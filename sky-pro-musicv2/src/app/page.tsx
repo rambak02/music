@@ -11,7 +11,7 @@ export default function Home() {
             <div className={clsx(styles.nav__logo, styles.logo)}>
               <Image
                 className={styles.logo__image}
-                src="/public/img/logo.png"
+                src="/img/logo.png"
                 alt="logo"
                 width={113}
                 height={17}
@@ -45,7 +45,7 @@ export default function Home() {
           <div className={clsx(styles.main__centerblock, styles.centerblock)}>
             <div className={clsx(styles.centerblock__search, styles.search)}>
               <svg className={styles.search__svg}>
-                <use xlinkHref="Image/icon/sprite.svg#icon-search"></use>
+                <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
               </svg>
               <input
                 className={styles.search__text}
@@ -105,7 +105,7 @@ export default function Home() {
                 </div>
                 <div className={clsx(styles.playlistTitle__col, styles.col04)}>
                   <svg className={styles.playlistTitle__svg}>
-                    <use xlinkHref="Image/icon/sprite.svg#icon-watch"></use>
+                    <use xlinkHref="img/icon/sprite.svg#icon-watch"></use>
                   </svg>
                 </div>
               </div>
@@ -115,11 +115,11 @@ export default function Home() {
                     <div className={styles.track__title}>
                       <div className={styles.track__titleImage}>
                         <svg className={styles.track__titleSvg}>
-                          <use xlinkHref="/public/img/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div className={styles.track__titleText}>
-                        <a className={styles.track__titleTink} href="http://">
+                        <a className={styles.track__titleLink} href="http://">
                           Guilt{" "}
                           <span className={styles.track__titleSpan}></span>
                         </a>
@@ -137,7 +137,7 @@ export default function Home() {
                     </div>
                     <div className={styles.track__time}>
                       <svg className={styles.track__timeSvg}>
-                        <use xlinkHref="Image/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span className={styles.track__timeText}>4:44</span>
                     </div>
@@ -149,7 +149,7 @@ export default function Home() {
                     <div className={styles.track__title}>
                       <div className={styles.track__titleImage}>
                         <svg className={styles.track__titleSvg}>
-                          <use xlinkHref="Image/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div className={styles.track__titleText}>
@@ -171,7 +171,7 @@ export default function Home() {
                     </div>
                     <div className={styles.track__time}>
                       <svg className={styles.track__timeSvg}>
-                        <use xlinkHref="Image/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span className={styles.track__timeText}>2:22</span>
                     </div>
@@ -183,7 +183,7 @@ export default function Home() {
                     <div className={styles.track__title}>
                       <div className={styles.track__titleImage}>
                         <svg className={styles.track__titleSvg}>
-                          <use xlinkHref="Image/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div className={styles.track__titleText}>
@@ -205,7 +205,7 @@ export default function Home() {
                     </div>
                     <div className={styles.track__time}>
                       <svg className={styles.track__timeSvg}>
-                        <use xlinkHref="Image/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span className={styles.track__timeText}>2:22</span>
                     </div>
@@ -217,7 +217,7 @@ export default function Home() {
                     <div className={styles.track__title}>
                       <div className={styles.track__titleImage}>
                         <svg className={styles.track__titleSvg}>
-                          <use xlinkHref="Image/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div className={styles.track__titleText}>
@@ -241,7 +241,7 @@ export default function Home() {
                     </div>
                     <div className={styles.track__time}>
                       <svg className={styles.track__timeSvg}>
-                        <use xlinkHref="Image/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span className={styles.track__timeText}>4:12</span>
                     </div>
@@ -253,7 +253,7 @@ export default function Home() {
                     <div className={styles.track__title}>
                       <div className={styles.track__titleImage}>
                         <svg className={styles.track__titleSvg}>
-                          <use xlinkHref="Image/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div className={styles.track__titleText}>
@@ -277,7 +277,7 @@ export default function Home() {
                     </div>
                     <div className={styles.track__time}>
                       <svg className={styles.track__timeSvg}>
-                        <use xlinkHref="Image/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span className={styles.track__timeText}>2:54</span>
                     </div>
@@ -289,7 +289,7 @@ export default function Home() {
                     <div className={styles.track__title}>
                       <div className={styles.track__titleImage}>
                         <svg className={styles.track__titleSvg}>
-                          <use xlinkHref="Image/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div className={styles.track__titleText}>
@@ -313,7 +313,7 @@ export default function Home() {
                     </div>
                     <div className={styles.track__time}>
                       <svg className={styles.track__timeSvg}>
-                        <use xlinkHref="Image/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span className={styles.track__timeText}>5:20</span>
                     </div>
@@ -325,7 +325,7 @@ export default function Home() {
                     <div className={styles.track__title}>
                       <div className={styles.track__titleImage}>
                         <svg className={styles.track__titleSvg}>
-                          <use xlinkHref="Image/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div className={styles.track__titleText}>
@@ -349,7 +349,7 @@ export default function Home() {
                     </div>
                     <div className={styles.track__time}>
                       <svg className={styles.track__timeSvg}>
-                        <use xlinkHref="Image/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span className={styles.track__timeText}>3:41</span>
                     </div>
@@ -361,7 +361,7 @@ export default function Home() {
                     <div className={styles.track__title}>
                       <div className={styles.track__titleImage}>
                         <svg className={styles.track__titleSvg}>
-                          <use xlinkHref="Image/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div className={styles.track__titleText}>
@@ -383,7 +383,7 @@ export default function Home() {
                     </div>
                     <div className={styles.track__time}>
                       <svg className={styles.track__timeSvg}>
-                        <use xlinkHref="Image/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span className={styles.track__timeText}>1:48</span>
                     </div>
@@ -395,7 +395,7 @@ export default function Home() {
                     <div className={styles.track__title}>
                       <div className={styles.track__titleImage}>
                         <svg className={styles.track__titleSvg}>
-                          <use xlinkHref="Image/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div className={styles.track__titleText}>
@@ -417,7 +417,7 @@ export default function Home() {
                     </div>
                     <div className={styles.track__time}>
                       <svg className={styles.track__timeSvg}>
-                        <use xlinkHref="Image/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span className={styles.track__timeText}>1:48</span>
                     </div>
@@ -428,7 +428,7 @@ export default function Home() {
                     <div className={styles.track__title}>
                       <div className={styles.track__titleImage}>
                         <svg className={styles.track__titleSvg}>
-                          <use xlinkHref="Image/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div className={styles.track__titleText}>
@@ -450,7 +450,7 @@ export default function Home() {
                     </div>
                     <div className={styles.track__time}>
                       <svg className={styles.track__timeSvg}>
-                        <use xlinkHref="Image/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span className={styles.track__timeText}>1:48</span>
                     </div>
@@ -461,7 +461,7 @@ export default function Home() {
                     <div className={styles.track__title}>
                       <div className={styles.track__titleImage}>
                         <svg className={styles.track__titleSvg}>
-                          <use xlinkHref="Image/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div className={styles.track__titleText}>
@@ -483,7 +483,7 @@ export default function Home() {
                     </div>
                     <div className={styles.track__time}>
                       <svg className={styles.track__timeSvg}>
-                        <use xlinkHref="Image/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span className={styles.track__timeText}>1:48</span>
                     </div>
@@ -494,7 +494,7 @@ export default function Home() {
                     <div className={styles.track__title}>
                       <div className={styles.track__titleImage}>
                         <svg className={styles.track__titleSvg}>
-                          <use xlinkHref="Image/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div className={styles.track__titleText}>
@@ -516,7 +516,7 @@ export default function Home() {
                     </div>
                     <div className={styles.track__time}>
                       <svg className={styles.track__timeSvg}>
-                        <use xlinkHref="Image/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span className={styles.track__timeText}>1:48</span>
                     </div>
@@ -527,7 +527,7 @@ export default function Home() {
                     <div className={styles.track__title}>
                       <div className={styles.track__titleImage}>
                         <svg className={styles.track__titleSvg}>
-                          <use xlinkHref="Image/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div className={styles.track__titleText}>
@@ -549,7 +549,7 @@ export default function Home() {
                     </div>
                     <div className={styles.track__time}>
                       <svg className={styles.track__timeSvg}>
-                        <use xlinkHref="Image/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span className={styles.track__timeText}>1:48</span>
                     </div>
@@ -560,7 +560,7 @@ export default function Home() {
                     <div className={styles.track__title}>
                       <div className={styles.track__titleImage}>
                         <svg className={styles.track__titleSvg}>
-                          <use xlinkHref="Image/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div className={styles.track__titleText}>
@@ -582,7 +582,7 @@ export default function Home() {
                     </div>
                     <div className={styles.track__time}>
                       <svg className={styles.track__timeSvg}>
-                        <use xlinkHref="Image/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span className={styles.track__timeText}>1:48</span>
                     </div>
@@ -594,7 +594,7 @@ export default function Home() {
                     <div className={styles.track__title}>
                       <div className={styles.track__titleImage}>
                         <svg className={styles.track__titleSvg}>
-                          <use xlinkHref="Image/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div className={styles.track__titleText}>
@@ -616,7 +616,7 @@ export default function Home() {
                     </div>
                     <div className={styles.track__time}>
                       <svg className={styles.track__timeSvg}>
-                        <use xlinkHref="Image/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span className={styles.track__timeText}>3:32</span>
                     </div>
@@ -628,7 +628,7 @@ export default function Home() {
                     <div className={styles.track__title}>
                       <div className={styles.track__titleImage}>
                         <svg className={styles.track__titleSvg}>
-                          <use xlinkHref="Image/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div className={styles.track__titleText}>
@@ -650,7 +650,7 @@ export default function Home() {
                     </div>
                     <div className={styles.track__time}>
                       <svg className={styles.track__timeSvg}>
-                        <use xlinkHref="Image/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span className={styles.track__timeText}>3:36</span>
                     </div>
@@ -662,7 +662,7 @@ export default function Home() {
                     <div className={styles.track__title}>
                       <div className={styles.track__titleImage}>
                         <svg className={styles.track__titleSvg}>
-                          <use xlinkHref="Image/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div className={styles.track__titleText}>
@@ -682,7 +682,7 @@ export default function Home() {
                     </div>
                     <div className={styles.track__time}>
                       <svg className={styles.track__timeSvg}>
-                        <use xlinkHref="Image/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span className={styles.track__timeText}></span>
                     </div>
@@ -696,7 +696,7 @@ export default function Home() {
               <p className={styles.sidebar__personalName}>Sergey.Ivanov</p>
               <div className={styles.sidebar__icon}>
                 <svg>
-                  <use xlinkHref="Image/icon/sprite.svg#logout"></use>
+                  <use xlinkHref="img/icon/sprite.svg#logout"></use>
                 </svg>
               </div>
             </div>
@@ -708,7 +708,7 @@ export default function Home() {
                       width={250}
                       height={150}
                       className={styles.sidebar__Image}
-                      src="Image/playlist01.png"
+                      src="/img/playlist01.png"
                       alt="day's playlist"
                     />
                   </a>
@@ -719,7 +719,7 @@ export default function Home() {
                       width={250}
                       height={150}
                       className={styles.sidebar__Image}
-                      src="Image/playlist02.png"
+                      src="/img/playlist02.png"
                       alt="day's playlist"
                     />
                   </a>
@@ -730,7 +730,7 @@ export default function Home() {
                       width={250}
                       height={150}
                       className={styles.sidebar__Image}
-                      src="Image/playlist03.png"
+                      src="/img/playlist03.png"
                       alt="day's playlist"
                     />
                   </a>
@@ -747,31 +747,31 @@ export default function Home() {
                 <div className={styles.player__controls}>
                   <div className={styles.player__btnPrev}>
                     <svg className={styles.player__btnPrevSvg}>
-                      <use xlinkHref="Image/icon/sprite.svg#icon-prev"></use>
+                      <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                     </svg>
                   </div>
                   <div className={clsx(styles.player__btnPlay, styles._btn)}>
                     <svg className={styles.player__btnPlaySvg}>
-                      <use xlinkHref="Image/icon/sprite.svg#icon-play"></use>
+                      <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
                     </svg>
                   </div>
                   <div className={styles.player__btnNext}>
                     <svg className={styles.player__btnNextSvg}>
-                      <use xlinkHref="Image/icon/sprite.svg#icon-next"></use>
+                      <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                     </svg>
                   </div>
                   <div
                     className={clsx(styles.player__btnRepeat, styles._btnIcon)}
                   >
                     <svg className={styles.player__btnRepeatSvg}>
-                      <use xlinkHref="Image/icon/sprite.svg#icon-repeat"></use>
+                      <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
                     </svg>
                   </div>
                   <div
                     className={clsx(styles.player__btnShuffle, styles._btnIcon)}
                   >
                     <svg className={styles.player__btnShuffleSvg}>
-                      <use xlinkHref="Image/icon/sprite.svg#icon-shuffle"></use>
+                      <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
                     </svg>
                   </div>
                 </div>
@@ -780,9 +780,9 @@ export default function Home() {
                   className={clsx(styles.player__trackPlay, styles.trackPlay)}
                 >
                   <div className={styles.trackPlay__contain}>
-                    <div className={styles.trackPlay__image}>
+                  <div className={styles.trackPlay__image}>
                       <svg className={styles.trackPlay__svg}>
-                        <use xlinkHref="Image/icon/sprite.svg#icon-note"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                       </svg>
                     </div>
                     <div className={styles.trackPlay__author}>
@@ -805,7 +805,7 @@ export default function Home() {
                       className={clsx(styles.trackPlay__like, styles._btnIcon)}
                     >
                       <svg className={styles.trackPlay__likeSvg}>
-                        <use xlinkHref="Image/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                     </div>
                     <div
@@ -815,7 +815,7 @@ export default function Home() {
                       )}
                     >
                       <svg className={styles.trackPlay__dislikeSvg}>
-                        <use xlinkHref="Image/icon/sprite.svg#icon-dislike"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
                       </svg>
                     </div>
                   </div>
@@ -825,7 +825,7 @@ export default function Home() {
                 <div className={styles.volume__content}>
                   <div className={styles.volume__image}>
                     <svg className={styles.volume__svg}>
-                      <use xlinkHref="Image/icon/sprite.svg#icon-volume"></use>
+                      <use xlinkHref="img/icon/sprite.svg#icon-volume"></use>
                     </svg>
                   </div>
                   <div className={clsx(styles.volume__progress, styles._btn)}>
