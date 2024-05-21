@@ -5,8 +5,8 @@ import Image from "next/image";
 
 export const NavBar = () => {
   return (
-    <div className={styles.main__nav}>
-      <div className={styles.nav__logo}>
+    <div className={styles.mainNav}>
+      <div className={styles.navLogo}>
         <Image
           src="/img/logo.png"
           alt="logo"
@@ -14,25 +14,25 @@ export const NavBar = () => {
           height={17}
         />
       </div>
-      <div className={styles.nav__burger}>
-        <span className={styles.burger__line}></span>
-        <span className={styles.burger__line}></span>
-        <span className={styles.burger__line}></span>
+      <div className={styles.navBurger}>
+        <span className={styles.burgerLine}></span>
+        <span className={styles.burgerLine}></span>
+        <span className={styles.burgerLine}></span>
       </div>
-      <div className={styles.nav__menu}>
-        <ul className={styles.menu__list}>
-          <li className={styles.menu__item}>
-            <a href="#" className={styles.menu__link}>
+      <div className={styles.navMenu}>
+        <ul className={styles.menuList}>
+          <li className={styles.menuItem}>
+            <a href="#" className={styles.menuLink}>
               Главное
             </a>
           </li>
-          <li className={styles.menu__item}>
-            <a href="#" className={styles.menu__link}>
+          <li className={styles.menuItem}>
+            <a href="#" className={styles.menuLink}>
               Мой плейлист
             </a>
           </li>
-          <li className={styles.menu__item}>
-            <a href="../signin.html" className={styles.menu__link}>
+          <li className={styles.menuItem}>
+            <a href="../signin.html" className={styles.menuLink}>
               Войти
             </a>
           </li>

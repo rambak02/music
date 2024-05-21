@@ -4,6 +4,8 @@ import clsx from "clsx";
 import { NavBar } from "@/components/NavBar/NavBar";
 import { Playlist } from "@/components/Playlist/Playlist";
 import { Filter } from "@/components/Filter/Filter";
+import { Search } from "@/components/Search/Search";
+import { Sidebar } from "@/components/Sidebar/Sidebar";
 
 export default function Home() {
   return (
@@ -12,72 +14,16 @@ export default function Home() {
         <div className={styles.main}>
           <NavBar />
           <div className={clsx(styles.main__centerblock, styles.centerblock)}>
-            <div className={clsx(styles.centerblock__search, styles.search)}>
-              <svg className={styles.search__svg}>
-                <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
-              </svg>
-              <input
-                className={styles.search__text}
-                type="search"
-                placeholder="Поиск"
-                name="search"
-              />
-            </div>
+            <Search />
             <h2 className={styles.centerblock__h2}>Треки</h2>
             <Filter />
             <Playlist />
           </div>
-          <div className={clsx(styles.main__sidebar, styles.sidebar)}>
-            <div className={styles.sidebar__personal}>
-              <p className={styles.sidebar__personalName}>Sergey.Ivanov</p>
-              <div className={styles.sidebar__icon}>
-                <svg>
-                  <use xlinkHref="img/icon/sprite.svg#logout"></use>
-                </svg>
-              </div>
-            </div>
-            <div className={styles.sidebar__block}>
-              <div className={styles.sidebar__list}>
-                <div className={styles.sidebar__item}>
-                  <a className={styles.sidebar__link} href="#">
-                    <Image
-                      width={250}
-                      height={150}
-                      className={styles.sidebar__Image}
-                      src="/img/playlist01.png"
-                      alt="day's playlist"
-                    />
-                  </a>
-                </div>
-                <div className={styles.sidebar__item}>
-                  <a className={styles.sidebar__link} href="#">
-                    <Image
-                      width={250}
-                      height={150}
-                      className={styles.sidebar__Image}
-                      src="/img/playlist02.png"
-                      alt="day's playlist"
-                    />
-                  </a>
-                </div>
-                <div className={styles.sidebar__item}>
-                  <a className={styles.sidebar__link} href="#">
-                    <Image
-                      width={250}
-                      height={150}
-                      className={styles.sidebar__Image}
-                      src="/img/playlist03.png"
-                      alt="day's playlist"
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Sidebar />
         </div>
         <div className={styles.bar}>
           <div className={styles.bar__content}>
-            <div className={styles.bar__playerProgress}></div>
+             <div className={styles.bar__playerProgress}></div>
             <div className={styles.bar__playerBlock}>
               <div className={clsx(styles.bar__player, styles.player)}>
                 <div className={styles.player__controls}>
