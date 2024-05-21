@@ -8,7 +8,7 @@ export const Bar = () => {
         <div className={styles.bar__playerProgress}></div>
         <div className={styles.bar__playerBlock}>
           <div className={styles.bar__player}>
-            <div className={styles.player__controls}>
+            <div className={styles.playerControls}>
               <div className={styles.player__btnPrev}>
                 <svg className={styles.player__btnPrevSvg}>
                   <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
