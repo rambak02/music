@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import styles from "./Bar.module.css"
+import styles from "./Bar.module.css";
 
 export const Bar = () => {
   return (

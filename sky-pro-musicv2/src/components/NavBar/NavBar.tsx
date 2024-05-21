@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import styles from "./NavBar.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 
 export const NavBar = () => {
@@ -32,9 +33,9 @@ export const NavBar = () => {
             </a>
           </li>
           <li className={styles.menuItem}>
-            <a href="../signin.html" className={styles.menuLink}>
+            <Link href="/signin" className={styles.menuLink}>
               Войти
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
