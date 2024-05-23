@@ -13,18 +13,22 @@ export const FilterItem = ({
   return (
     <div>
       <div
-        className={clsx(styles.filter__button, styles._btnText)}
+        className={clsx(styles.filter__button, styles._btnText, {
+          [styles.openFilter]: isOpen,
+        })}
         onClick={() => onClick(value)}
       >
         {title}
       </div>
       {isOpen && (
         <div className={styles.filterContainer}>
-        <ul className={styles.filterList}>
-          {list.map((item) => (
-            <li className={styles.filterListItem} key={item}>{item}</li>
-          ))}
-        </ul>
+          <ul className={styles.filterList}>
+            {list.map((item) => (
+              <li className={styles.filterListItem} key={item}>
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </div>

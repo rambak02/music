@@ -67,3 +67,7 @@
   position: absolute;
   z-index: 4;
 }
+.openFilter {
+  border-color: #ad61ff;
+  color: #ad61ff;
+}
