@@ -6,6 +6,8 @@ export const FilterItem = ({ title } : FilterItemType) => {
   return (
     <>
     <div className={clsx(styles.filter__button, styles._btnText)}>{title}</div>
+    <ul>
+    </ul>
     </>
   );
 };
