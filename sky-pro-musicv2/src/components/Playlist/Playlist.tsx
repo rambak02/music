@@ -1,13 +1,12 @@
+import { TrackType, TracksType } from "@/types/type";
 import { Track } from "../Track/Track";
 import styles from "./Playlist.module.css";
 import clsx from "clsx";
-export const Playlist = () => {
+export const Playlist = ({ tracks }: TracksType)=> {
   return (
     <div className={styles.centerblockContent}>
       <div className={styles.contentTitle}>
-        <div className={clsx(styles.playlistTitleCol, styles.col01)}>
-          Трек
-        </div>
+        <div className={clsx(styles.playlistTitleCol, styles.col01)}>Трек</div>
         <div className={clsx(styles.playlistTitleCol, styles.col02)}>
           Исполнитель
         </div>
@@ -21,9 +20,9 @@ export const Playlist = () => {
         </div>
       </div>
       <div className={styles.contentPlaylist}>
-        <Track />
-        <Track />
-        <Track />
+        {tracks.map((track: TrackType) => (
+          <Track track={track} key={track.id} />
+        ))}
       </div>
     </div>
   );
