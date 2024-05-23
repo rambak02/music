@@ -3,7 +3,7 @@ import styles from "./Track.module.css";
 import { TrackType } from "@/types/type";
 import { formatSecond } from "./helpers/helpers";
 
-export const Track: React.FC<{ track: TrackType }> = ({ track }) => {
+export const Track: React.FC<{track: TrackType }> = ({ track }) => {
   const formattedTime = formatSecond(track.duration_in_seconds);
   return (
     <div className={styles.playlistItem}>
