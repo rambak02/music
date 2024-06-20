@@ -6,6 +6,7 @@
   border: 1px solid #ffffff;
   border-radius: 60px;
   padding: 6px 20px;
+  margin-right: 10px;
 }
 
 .filter__button:not(:last-child) {
@@ -20,4 +21,53 @@
   border-color: #ad61ff;
   color: #ad61ff;
   cursor: pointer;
+}
+.filterList {
+  min-width: 195px;
+  max-height: 280px;
+  overflow-y: scroll;
+  padding: 34px 0px 0px 0px;
+  border-radius: 12px;
+  background: #313131;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 15px;
+  position: absolute;
+  z-index: 5;
+}
+
+.filterList::-webkit-scrollbar {
+  width: 2px;
+}
+.filterList::-webkit-scrollbar-track {
+  background: grey;
+}
+.filterList::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 20px;
+}
+.filterListItem:hover {
+  text-decoration: underline;
+  color: #ad61ff;
+}
+
+.filterContainer {
+  min-width: 248px;
+  height: 305px;
+  padding: 34px 0px 0px 0px;
+  border-radius: 12px;
+  background: #313131;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 15px;
+  position: absolute;
+  z-index: 4;
+}
+.openFilter {
+  border-color: #ad61ff;
+  color: #ad61ff;
 }
