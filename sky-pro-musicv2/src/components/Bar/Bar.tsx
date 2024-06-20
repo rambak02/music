@@ -1,11 +1,77 @@
+"use client";
 import clsx from "clsx";
 import styles from "./Bar.module.css";
+import { useEffect, useRef, useState } from "react";
+import { TrackType } from "@/types/type";
+import Image from "next/image";
+import ProgressBar from "../ProgressBar/ProgressBar";
+import { formatSecond } from "./helper/helper";
 
-export const Bar = () => {
+export const Bar: React.FC<{ track: TrackType | null }> = ({ track }) => {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  //состояние для зацикливания трека
+  const [isLoop, setIsLoop] = useState(false);
+  //Состояние для управления воспроизведением
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState<number>(0);
+  const [volume, setVolume] = useState<number>(0.5);
+
+  const duration = audioRef.current?.duration || 0;
+
+  const tooglePlay = () => {
+    if (isPlaying) {
+      audioRef.current?.pause();
+    } else {
+      audioRef.current?.play();
+    }
+    setIsPlaying((prev) => !prev);
+  };
+
+  const toogleLoop = () => {
+    const audio = audioRef.current;
+    if (audio) {
+      if (isLoop) {
+        audio.loop = false;
+      } else {
+        audio.loop = true;
+      }
+      setIsLoop((prev) => !prev);
+    }
+  };
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+    }
+  }, [volume]);
+
+  const handleProgressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = parseFloat(e.target.value);
+      setCurrentTime(audioRef.current.currentTime);
+    }
+  };
+  const formattedCurrentTime = formatSecond(Number(currentTime.toFixed(0)));
+  const formattedDuration = formatSecond(Number(duration.toFixed(0)));
   return (
     <div className={styles.bar}>
+      <audio
+        className={styles.audio}
+        src={track?.track_file}
+        ref={audioRef}
+        onTimeUpdate={(e) => setCurrentTime(e.currentTarget.currentTime)}
+      ></audio>
+      <div className={styles.barTime}>
+        {formattedCurrentTime + "/" + formattedDuration}
+      </div>
       <div className={styles.bar__content}>
-        <div className={styles.bar__playerProgress}></div>
+        <ProgressBar
+          max={duration}
+          value={currentTime}
+          step={0.01}
+          onChange={handleProgressChange}
+        />
         <div className={styles.bar__playerBlock}>
           <div className={styles.bar__player}>
             <div className={styles.playerControls}>
@@ -14,18 +80,38 @@ export const Bar = () => {
                   <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                 </svg>
               </div>
-              <div className={clsx(styles.player__btnPlay, styles._btn)}>
-                <svg className={styles.player__btnPlaySvg}>
-                  <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
-                </svg>
+              <div
+                className={clsx(styles.player__btnPlay, styles._btn)}
+                onClick={tooglePlay}
+              >
+                {isPlaying ? (
+                  <Image
+                    src="img/icon/pause.svg"
+                    height={20}
+                    width={22}
+                    alt="pause"
+                  />
+                ) : (
+                  <svg className={styles.player__btnPlaySvg}>
+                    <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
+                  </svg>
+                )}
               </div>
               <div className={styles.player__btnNext}>
                 <svg className={styles.player__btnNextSvg}>
                   <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                 </svg>
               </div>
-              <div className={clsx(styles.player__btnRepeat, styles._btnIcon)}>
-                <svg className={styles.player__btnRepeatSvg}>
+
+              <div
+                className={clsx(styles.player__btnRepeat, styles._btnIcon)}
+                onClick={toogleLoop}
+              >
+                <svg
+                  className={clsx(styles.player__btnRepeatSvg, {
+                    [styles.active]: isLoop,
+                  })}
+                >
                   <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
                 </svg>
               </div>
@@ -45,12 +131,12 @@ export const Bar = () => {
                 </div>
                 <div className={styles.trackPlay__author}>
                   <a className={styles.trackPlay__authorLink} href="http://">
-                    Ты та...
+                    {track?.name}
                   </a>
                 </div>
                 <div className={styles.trackPlay__album}>
                   <a className={styles.trackPlay__albumLink} href="http://">
-                    Баста
+                    {track?.author}
                   </a>
                 </div>
               </div>
@@ -83,6 +169,11 @@ export const Bar = () => {
                   className={clsx(styles.volume__progressLine, styles._btn)}
                   type="range"
                   name="range"
+                  min="0"
+                  max="1"
+                   step="0.01"
+                  value={volume}
+                  onChange={(e) => setVolume(Number(e.target.value))}
                 />
               </div>
             </div>

@@ -1,8 +1,16 @@
+"use client";
+
 import { TrackType, TracksType } from "@/types/type";
 import { Track } from "../Track/Track";
 import styles from "./Playlist.module.css";
 import clsx from "clsx";
-export const Playlist = ({ tracks }: TracksType)=> {
+export const Playlist = ({
+  tracks,
+  onClick,
+}: {
+  tracks: TrackType[];
+  onClick: (track: TrackType) => void;
+}) => {
   return (
     <div className={styles.centerblockContent}>
       <div className={styles.contentTitle}>
@@ -21,7 +29,7 @@ export const Playlist = ({ tracks }: TracksType)=> {
       </div>
       <div className={styles.contentPlaylist}>
         {tracks.map((track: TrackType) => (
-          <Track track={track} key={track.id} />
+          <Track track={track} key={track.id} onClick={() => onClick(track)} />
         ))}
       </div>
     </div>
