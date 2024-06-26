@@ -46,6 +46,13 @@ export const Bar: React.FC<{ track: TrackType | null }> = ({ track }) => {
     }
   }, [volume]);
 
+  useEffect(() => {
+    if (track && audioRef.current) {
+      audioRef.current.play();
+      setIsPlaying(true);
+    }
+  }, [track])
+
   const handleProgressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (audioRef.current) {
       audioRef.current.currentTime = parseFloat(e.target.value);
