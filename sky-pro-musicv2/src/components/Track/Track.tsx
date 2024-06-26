@@ -3,10 +3,15 @@ import styles from "./Track.module.css";
 import { TrackType } from "@/types/type";
 import { formatSecond } from "./helpers/helpers";
 
-export const Track: React.FC<{track: TrackType }> = ({ track }) => {
+type Props = {
+  track: TrackType;
+  onClick: () => void;
+};
+
+export const Track = ({ track, onClick }: Props) => {
   const formattedTime = formatSecond(track.duration_in_seconds);
   return (
-    <div className={styles.playlistItem}>
+    <div className={styles.playlistItem} onClick={onClick}>
       <div className={styles.playlistTrack}>
         <div className={styles.trackTitle}>
           <div className={styles.trackTitleImage}>
