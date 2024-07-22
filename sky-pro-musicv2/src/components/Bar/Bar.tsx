@@ -2,12 +2,15 @@
 import clsx from "clsx";
 import styles from "./Bar.module.css";
 import { useEffect, useRef, useState } from "react";
-import { TrackType } from "@/types/type";
 import Image from "next/image";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { formatSecond } from "./helper/helper";
+import { useAppDispatch, useAppSelector } from "@/hooks/store";
+import { nextTrack, prevTrack } from "@/store/features/playlistSlice";
 
-export const Bar: React.FC<{ track: TrackType | null }> = ({ track }) => {
+export const Bar = () => {
+   const currentTrack = useAppSelector((state) => state.playlist.currentTrack)
+   const track = currentTrack;
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   //состояние для зацикливания трека
@@ -16,8 +19,32 @@ export const Bar: React.FC<{ track: TrackType | null }> = ({ track }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [volume, setVolume] = useState<number>(0.5);
-
+  const dispatch = useAppDispatch();
   const duration = audioRef.current?.duration || 0;
+
+const handleNext = () => {
+  dispatch(nextTrack())
+}
+const handlePrev = () => {
+  dispatch(prevTrack())
+}
+
+  useEffect(() => {
+      audioRef.current?.addEventListener('ended', handleNext);
+
+    return () => {
+        audioRef.current?.removeEventListener('ended', handleNext); 
+    };
+}, [currentTrack]);
+
+useEffect(() => {
+
+
+
+return () => {
+
+};
+}, [currentTrack]);
 
   const tooglePlay = () => {
     if (isPlaying) {
@@ -60,17 +87,16 @@ export const Bar: React.FC<{ track: TrackType | null }> = ({ track }) => {
     }
   };
 
-  const handleNextTrack = () => {
-    alert("Еще не реализовано")
-  }
-  const handlePrevTrack = () => {
-    alert("Еще не реализовано")
-  }
   const handleShuffleTrack = () => {
     alert("Еще не реализовано")
   }
   const formattedCurrentTime = formatSecond(Number(currentTime.toFixed(0)));
   const formattedDuration = formatSecond(Number(duration.toFixed(0)));
+
+  if (!currentTrack) {
+    return null
+  }
+
   return (
     <div className={styles.bar}>
       <audio
@@ -92,7 +118,7 @@ export const Bar: React.FC<{ track: TrackType | null }> = ({ track }) => {
         <div className={styles.bar__playerBlock}>
           <div className={styles.bar__player}>
             <div className={styles.playerControls}>
-              <div className={styles.player__btnPrev} onClick = {handlePrevTrack}>
+              <div className={styles.player__btnPrev} onClick = {handlePrev}>
                 <svg className={styles.player__btnPrevSvg}>
                   <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                 </svg>
@@ -114,7 +140,7 @@ export const Bar: React.FC<{ track: TrackType | null }> = ({ track }) => {
                   </svg>
                 )}
               </div>
-              <div className={styles.player__btnNext} onClick = {handleNextTrack}>
+              <div className={styles.player__btnNext} onClick = {handleNext}>
                 <svg className={styles.player__btnNextSvg}>
                   <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                 </svg>

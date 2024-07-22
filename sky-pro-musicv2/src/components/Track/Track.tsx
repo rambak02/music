@@ -1,17 +1,23 @@
+"use client"
 import React from "react";
 import styles from "./Track.module.css";
-import { TrackType } from "@/types/type";
+import { TracksType, TrackType } from "@/types/type";
 import { formatSecond } from "./helpers/helpers";
+import { useAppDispatch, useAppSelector } from "@/hooks/store";
+import { setCurrentTrack } from "@/store/features/playlistSlice";
 
 type Props = {
   track: TrackType;
-  onClick: () => void;
+  tracks: TrackType[];
 };
 
-export const Track = ({ track, onClick }: Props) => {
+export const Track = ({ track, tracks}: Props) => {
+  const dispatch =  useAppDispatch();
+  const currentTrack = useAppSelector((state)=> state.playlist.currentTrack)
+  const isCurrentTrack = currentTrack?.id === track.id
   const formattedTime = formatSecond(track.duration_in_seconds);
   return (
-    <div className={styles.playlistItem} onClick={onClick}>
+    <div onClick={()=> dispatch(setCurrentTrack({currentTrack: track, tracks}))} className={styles.playlistItem}  >
       <div className={styles.playlistTrack}>
         <div className={styles.trackTitle}>
           <div className={styles.trackTitleImage}>

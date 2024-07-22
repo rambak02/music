@@ -6,10 +6,8 @@ import styles from "./Playlist.module.css";
 import clsx from "clsx";
 export const Playlist = ({
   tracks,
-  onClick,
 }: {
   tracks: TrackType[];
-  onClick: (track: TrackType) => void;
 }) => {
   return (
     <div className={styles.centerblockContent}>
@@ -29,7 +27,7 @@ export const Playlist = ({
       </div>
       <div className={styles.contentPlaylist}>
         {tracks.map((track: TrackType) => (
-          <Track track={track} key={track.id} onClick={() => onClick(track)} />
+          <Track track={track} key={track.id} tracks = {tracks} />
         ))}
       </div>
     </div>
