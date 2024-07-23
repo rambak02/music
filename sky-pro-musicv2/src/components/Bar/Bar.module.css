@@ -309,6 +309,10 @@
   stroke: #696969;
 }
 
+.player__btnShuffleSvg.active {
+  stroke: #ffffff;
+}
+
 .player__trackPlay {
   display: -webkit-box;
   display: -ms-flexbox;

@@ -6,13 +6,18 @@ import Image from "next/image";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { formatSecond } from "./helper/helper";
 import { useAppDispatch, useAppSelector } from "@/hooks/store";
-import { nextTrack, prevTrack, togglePlayingTrack, toggleShuffleTrack } from "@/store/features/playlistSlice";
+import {
+  nextTrack,
+  prevTrack,
+  togglePlayingTrack,
+  toggleShuffleTrack,
+} from "@/store/features/playlistSlice";
 
 export const Bar = () => {
-   const currentTrack = useAppSelector((state) => state.playlist.currentTrack)
-   const track = currentTrack;
+  const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
+  const track = currentTrack;
   const audioRef = useRef<HTMLAudioElement | null>(null);
-
+  const shuffleTrack = useAppSelector((state) => state.playlist.isShuffled);
   //состояние для зацикливания трека
   const [isLoop, setIsLoop] = useState(false);
   //Состояние для управления воспроизведением
@@ -22,33 +27,32 @@ export const Bar = () => {
   const dispatch = useAppDispatch();
   const duration = audioRef.current?.duration || 0;
 
-const handleNext = () => {
-  dispatch(nextTrack())
-}
-const handlePrev = () => {
-  dispatch(prevTrack())
-}
-const handleShuffleTrack = () => {
-  dispatch(toggleShuffleTrack( ))
-}
+  const handleNext = () => {
+    dispatch(nextTrack());
+  };
+  const handlePrev = () => {
+    dispatch(prevTrack());
+  };
+  const handleShuffleTrack = () => {
+    dispatch(toggleShuffleTrack());
+  };
 
   useEffect(() => {
-      audioRef.current?.addEventListener('ended', handleNext);
+    audioRef.current?.addEventListener("ended", handleNext);
 
     return () => {
-        audioRef.current?.removeEventListener('ended', handleNext); 
+      audioRef.current?.removeEventListener("ended", handleNext);
     };
-}, [currentTrack]);
+  }, [currentTrack]);
 
   const tooglePlay = () => {
     if (isPlaying) {
       audioRef.current?.pause();
-      
     } else {
       audioRef.current?.play();
     }
     setIsPlaying((prev) => !prev);
-    dispatch(togglePlayingTrack())
+    dispatch(togglePlayingTrack());
   };
 
   const toogleLoop = () => {
@@ -74,7 +78,7 @@ const handleShuffleTrack = () => {
       audioRef.current.play();
       setIsPlaying(true);
     }
-  }, [track])
+  }, [track]);
 
   const handleProgressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (audioRef.current) {
@@ -83,12 +87,11 @@ const handleShuffleTrack = () => {
     }
   };
 
- 
   const formattedCurrentTime = formatSecond(Number(currentTime.toFixed(0)));
   const formattedDuration = formatSecond(Number(duration.toFixed(0)));
 
   if (!currentTrack) {
-    return null
+    return null;
   }
 
   return (
@@ -112,7 +115,7 @@ const handleShuffleTrack = () => {
         <div className={styles.bar__playerBlock}>
           <div className={styles.bar__player}>
             <div className={styles.playerControls}>
-              <div className={styles.player__btnPrev} onClick = {handlePrev}>
+              <div className={styles.player__btnPrev} onClick={handlePrev}>
                 <svg className={styles.player__btnPrevSvg}>
                   <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                 </svg>
@@ -134,7 +137,7 @@ const handleShuffleTrack = () => {
                   </svg>
                 )}
               </div>
-              <div className={styles.player__btnNext} onClick = {handleNext}>
+              <div className={styles.player__btnNext} onClick={handleNext}>
                 <svg className={styles.player__btnNextSvg}>
                   <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                 </svg>
@@ -152,8 +155,15 @@ const handleShuffleTrack = () => {
                   <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
                 </svg>
               </div>
-              <div className={clsx(styles.player__btnShuffle, styles._btnIcon)} onClick = {handleShuffleTrack}>
-                <svg className={styles.player__btnShuffleSvg}>
+              <div
+                className={clsx(styles.player__btnShuffle, styles._btnIcon)}
+                onClick={handleShuffleTrack}
+              >
+                <svg
+                  className={clsx(styles.player__btnShuffleSvg, {
+                    [styles.active]: shuffleTrack,
+                  })}
+                >
                   <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
                 </svg>
               </div>
@@ -208,7 +218,7 @@ const handleShuffleTrack = () => {
                   name="range"
                   min="0"
                   max="1"
-                   step="0.01"
+                  step="0.01"
                   value={volume}
                   onChange={(e) => setVolume(Number(e.target.value))}
                 />
