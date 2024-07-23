@@ -6,7 +6,7 @@ import Image from "next/image";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { formatSecond } from "./helper/helper";
 import { useAppDispatch, useAppSelector } from "@/hooks/store";
-import { nextTrack, prevTrack } from "@/store/features/playlistSlice";
+import { nextTrack, prevTrack, togglePlayingTrack, toggleShuffleTrack } from "@/store/features/playlistSlice";
 
 export const Bar = () => {
    const currentTrack = useAppSelector((state) => state.playlist.currentTrack)
@@ -28,6 +28,9 @@ const handleNext = () => {
 const handlePrev = () => {
   dispatch(prevTrack())
 }
+const handleShuffleTrack = () => {
+  dispatch(toggleShuffleTrack( ))
+}
 
   useEffect(() => {
       audioRef.current?.addEventListener('ended', handleNext);
@@ -37,22 +40,15 @@ const handlePrev = () => {
     };
 }, [currentTrack]);
 
-useEffect(() => {
-
-
-
-return () => {
-
-};
-}, [currentTrack]);
-
   const tooglePlay = () => {
     if (isPlaying) {
       audioRef.current?.pause();
+      
     } else {
       audioRef.current?.play();
     }
     setIsPlaying((prev) => !prev);
+    dispatch(togglePlayingTrack())
   };
 
   const toogleLoop = () => {
@@ -87,9 +83,7 @@ return () => {
     }
   };
 
-  const handleShuffleTrack = () => {
-    alert("Еще не реализовано")
-  }
+ 
   const formattedCurrentTime = formatSecond(Number(currentTime.toFixed(0)));
   const formattedDuration = formatSecond(Number(duration.toFixed(0)));
 

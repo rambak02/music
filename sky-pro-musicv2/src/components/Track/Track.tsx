@@ -1,27 +1,37 @@
-"use client"
+"use client";
 import React from "react";
 import styles from "./Track.module.css";
 import { TracksType, TrackType } from "@/types/type";
 import { formatSecond } from "./helpers/helpers";
 import { useAppDispatch, useAppSelector } from "@/hooks/store";
 import { setCurrentTrack } from "@/store/features/playlistSlice";
+import clsx from "clsx";
 
 type Props = {
   track: TrackType;
   tracks: TrackType[];
 };
 
-export const Track = ({ track, tracks}: Props) => {
-  const dispatch =  useAppDispatch();
-  const currentTrack = useAppSelector((state)=> state.playlist.currentTrack)
-  const isCurrentTrack = currentTrack?.id === track.id
+export const Track = ({ track, tracks }: Props) => {
+  const dispatch = useAppDispatch();
+  const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
+  const isCurrentTrack = currentTrack?.id === track.id;
+  const isPlayingTrack = useAppSelector((state) => state.playlist.isPlaying);
   const formattedTime = formatSecond(track.duration_in_seconds);
   return (
-    <div onClick={()=> dispatch(setCurrentTrack({currentTrack: track, tracks}))} className={styles.playlistItem}  >
+    <div
+      onClick={() => dispatch(setCurrentTrack({ currentTrack: track, tracks }))}
+      className={styles.playlistItem}
+    >
       <div className={styles.playlistTrack}>
         <div className={styles.trackTitle}>
-          <div className={styles.trackTitleImage}>
-            <svg className={styles.trackTitleSvg}>
+          <div className={clsx(styles.trackTitleImage)}>
+            <div className={isCurrentTrack ? clsx(styles.track_pulse, {
+              [styles.active]: isPlayingTrack
+            }) : ""}></div>
+            <svg
+              className={clsx(styles.trackTitleSvg)}
+            >
               <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
             </svg>
           </div>
