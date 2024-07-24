@@ -9,7 +9,7 @@ import { Bar } from "@/components/Bar/Bar";
 import { TrackType, TracksType } from "@/types/type";
 
 export const Main = ({tracks}: TracksType) => {
-  // const [currnetTrack, setCurrentTrack] = useState<TrackType | null>(null)
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>

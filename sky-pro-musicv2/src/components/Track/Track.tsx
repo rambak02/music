@@ -6,6 +6,9 @@ import { formatSecond } from "./helpers/helpers";
 import { useAppDispatch, useAppSelector } from "@/hooks/store";
 import { setCurrentTrack } from "@/store/features/playlistSlice";
 import clsx from "clsx";
+import Image from "next/image";
+import spriteImg from "../../../public/img/icon/note.svg";
+import likeImg from "../../../public/img/icon/like.svg";
 
 type Props = {
   track: TrackType;
@@ -26,14 +29,22 @@ export const Track = ({ track, tracks }: Props) => {
       <div className={styles.playlistTrack}>
         <div className={styles.trackTitle}>
           <div className={clsx(styles.trackTitleImage)}>
-            <div className={isCurrentTrack ? clsx(styles.track_pulse, {
-              [styles.active]: isPlayingTrack
-            }) : ""}></div>
-            <svg
-              className={clsx(styles.trackTitleSvg)}
-            >
-              <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-            </svg>
+            <div
+              className={
+                isCurrentTrack
+                  ? clsx(styles.track_pulse, {
+                      [styles.active]: isPlayingTrack,
+                    })
+                  : ""
+              }
+            ></div>
+            <Image
+              className={styles.trackTitleSvg}
+              src={spriteImg}
+              width={51}
+              height={51}
+              alt="изображение трека"
+            />
           </div>
           <>
             <a className={styles.trackTitleLink} href="http://">
