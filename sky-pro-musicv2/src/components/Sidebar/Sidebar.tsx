@@ -1,6 +1,9 @@
 import Image from "next/image";
 import styles from "./Sidebar.module.css";
 import { Personal } from "../Personal/Personal";
+import playlist01Img from "../../../public/img/playlist01.png"
+import playlist02Img from "../../../public/img/playlist02.png"
+import playlist03Img from "../../../public/img/playlist03.png"
 
 export const Sidebar = () => {
   return (
@@ -14,7 +17,7 @@ export const Sidebar = () => {
                 width={250}
                 height={150}
                 className={styles.sidebarImg}
-                src="/img/playlist01.png"
+                src={playlist01Img}
                 alt="day's playlist"
               />
             </a>
@@ -25,7 +28,7 @@ export const Sidebar = () => {
                 width={250}
                 height={150}
                 className={styles.sidebarImg}
-                src="/img/playlist02.png"
+                src={playlist02Img}
                 alt="day's playlist"
               />
             </a>
@@ -36,7 +39,7 @@ export const Sidebar = () => {
                 width={250}
                 height={150}
                 className={styles.sidebarImg}
-                src="/img/playlist03.png"
+                src={playlist03Img}
                 alt="day's playlist"
               />
             </a>

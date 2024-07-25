@@ -1,23 +1,50 @@
+"use client";
 import React from "react";
 import styles from "./Track.module.css";
-import { TrackType } from "@/types/type";
+import { TracksType, TrackType } from "@/types/type";
 import { formatSecond } from "./helpers/helpers";
+import { useAppDispatch, useAppSelector } from "@/hooks/store";
+import { setCurrentTrack } from "@/store/features/playlistSlice";
+import clsx from "clsx";
+import Image from "next/image";
+import spriteImg from "../../../public/img/icon/note.svg";
+import likeImg from "../../../public/img/icon/like.svg";
 
 type Props = {
   track: TrackType;
-  onClick: () => void;
+  tracks: TrackType[];
 };
 
-export const Track = ({ track, onClick }: Props) => {
+export const Track = ({ track, tracks }: Props) => {
+  const dispatch = useAppDispatch();
+  const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
+  const isCurrentTrack = currentTrack?.id === track.id;
+  const isPlayingTrack = useAppSelector((state) => state.playlist.isPlaying);
   const formattedTime = formatSecond(track.duration_in_seconds);
   return (
-    <div className={styles.playlistItem} onClick={onClick}>
+    <div
+      onClick={() => dispatch(setCurrentTrack({ currentTrack: track, tracks }))}
+      className={styles.playlistItem}
+    >
       <div className={styles.playlistTrack}>
         <div className={styles.trackTitle}>
-          <div className={styles.trackTitleImage}>
-            <svg className={styles.trackTitleSvg}>
-              <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-            </svg>
+          <div className={clsx(styles.trackTitleImage)}>
+            <div
+              className={
+                isCurrentTrack
+                  ? clsx(styles.track_pulse, {
+                      [styles.active]: isPlayingTrack,
+                    })
+                  : ""
+              }
+            ></div>
+            <Image
+              className={styles.trackTitleSvg}
+              src={spriteImg}
+              width={51}
+              height={51}
+              alt="изображение трека"
+            />
           </div>
           <>
             <a className={styles.trackTitleLink} href="http://">

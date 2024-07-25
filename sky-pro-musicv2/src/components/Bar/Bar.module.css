@@ -15,6 +15,7 @@
   left: 0;
   width: 100%;
   background: rgba(28, 28, 28, 0.5);
+  z-index: 2;
 }
 
 .audio {
@@ -307,6 +308,10 @@
   height: 12px;
   fill: transparent;
   stroke: #696969;
+}
+
+.player__btnShuffleSvg.active {
+  stroke: #ffffff;
 }
 
 .player__trackPlay {

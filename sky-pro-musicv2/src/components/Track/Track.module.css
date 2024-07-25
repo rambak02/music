@@ -1,3 +1,15 @@
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .playlistItem {
   width: 100%;
   display: block;
@@ -120,4 +132,17 @@
   line-height: 24px;
   text-align: right;
   color: #696969;
+}
+
+.track_pulse {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: #b0229b;
+  border-radius: 50%;
+  z-index: 1;
+  
+}
+.track_pulse.active {
+  animation: pulse 2s infinite;
 }
