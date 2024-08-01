@@ -5,13 +5,20 @@ import styles from "./NavBar.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/hooks/store";
+import { logout } from "@/store/features/authSlice";
 
 export const NavBar = () => {
+  const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
-
+  const  user  = useAppSelector((state) => state.auth.user)
+ const handleLogoutUser = () => {
+  dispatch(logout())
+ }
   const toggleMenu = () => {
     setIsOpen((prev) => !prev);
   };
+  
   return (
     <div className={styles.mainNav}>
       <div className={styles.navLogo}>
@@ -41,11 +48,15 @@ export const NavBar = () => {
               Мой плейлист
             </a>
           </li>
-          <li className={styles.menuItem}>
+          {user ?   <li className={styles.menuItem} onClick={handleLogoutUser}>
+            <Link href="/signin" className={styles.menuLink}>
+              Выйти
+            </Link>
+          </li> : <li className={styles.menuItem}>
             <Link href="/signin" className={styles.menuLink}>
               Войти
             </Link>
-          </li>
+          </li>}
         </ul>
       </div>
     </div>

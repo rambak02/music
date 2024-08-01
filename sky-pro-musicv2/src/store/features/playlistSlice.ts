@@ -1,6 +1,5 @@
-import { TracksType, TrackType } from "@/types/type";
+import { TrackType } from "@/types/type";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import next from "next";
 
 type PlaylistStateType = {
   isPlaying: boolean;
