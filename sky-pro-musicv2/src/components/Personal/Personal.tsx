@@ -1,6 +1,7 @@
 "use client"
-import { useAppSelector } from "@/hooks/store";
+import { useAppDispatch, useAppSelector } from "@/hooks/store";
 import styles from "./Personal.module.css";
+import { logout } from "@/store/features/authSlice";
 import { useRouter } from "next/navigation";
 export const Personal = () => {
   const dispatch = useAppDispatch();

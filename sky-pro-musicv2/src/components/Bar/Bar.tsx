@@ -7,6 +7,8 @@ import ProgressBar from "../ProgressBar/ProgressBar";
 import { formatSecond } from "./helper/helper";
 import { useAppDispatch, useAppSelector } from "@/hooks/store";
 import {
+  dislike,
+  likeTrack,
   nextTrack,
   prevTrack,
   togglePlayingTrack,
@@ -87,9 +89,22 @@ export const Bar = () => {
     }
   };
 
+  const handleLikeTrack = () => {
+    if (currentTrack) {
+      dispatch(likeTrack(currentTrack))
+    }
+    
+  }
+  const handleDislikeTrack = () => {
+    if (currentTrack) {
+      dispatch(dislike(currentTrack))
+    }
+    
+  }
+
   const formattedCurrentTime = formatSecond(Number(currentTime.toFixed(0)));
   const formattedDuration = formatSecond(Number(duration.toFixed(0)));
-
+  
   if (!currentTrack) {
     return null;
   }
@@ -188,14 +203,14 @@ export const Bar = () => {
                 </div>
               </div>
 
-              <div className={styles.trackPlay__likeDis}>
-                <div className={clsx(styles.trackPlay__like, styles._btnIcon)}>
+              <div className={styles.trackPlay__likeDis} >
+                <div className={clsx(styles.trackPlay__like, styles._btnIcon)} onClick={handleLikeTrack}>
                   <svg className={styles.trackPlay__likeSvg}>
                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                   </svg>
                 </div>
                 <div
-                  className={clsx(styles.trackPlay__dislike, styles._btnIcon)}
+                  className={clsx(styles.trackPlay__dislike, styles._btnIcon)} onClick={handleDislikeTrack}
                 >
                   <svg className={styles.trackPlay__dislikeSvg}>
                     <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
