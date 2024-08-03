@@ -18,16 +18,14 @@ type Props = {
 };
 
 export const Track = ({ track, tracks }: Props) => {
+  const { isLiked, handleLike } = useLikeTrack({ track });
   const dispatch = useAppDispatch();
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
   const isCurrentTrack = currentTrack?.id === track.id;
   const isPlayingTrack = useAppSelector((state) => state.playlist.isPlaying);
   const formattedTime = formatSecond(track.duration_in_seconds);
-  const { handleLike, isLiked } = useLikeTrack({ track });
-  useEffect (()=> {
-     
-  })
-  console.log(isLiked)
+ 
+
   return (
     <div
       onClick={() => dispatch(setCurrentTrack({ currentTrack: track, tracks }))}
@@ -69,11 +67,7 @@ export const Track = ({ track, tracks }: Props) => {
             {track.album}
           </a>
         </div>
-          {isLiked ? (
-            <Image src={dislikeImg} width={14} height={12} alt="dislike" onClick={(e) =>  handleLike(e)}/>
-          ) : (
-            <Image src={likeImg} width={14} height={12} alt="activelike" onClick={(e) => handleLike(e)}/>
-          )}
+        <Image src ={isLiked ? dislikeImg : likeImg} width={14} height={12} alt="dislike/like" onClick={(e) =>  handleLike(e)}/>
         <span className={styles.trackTimeText}>{formattedTime}</span>
       </div>
     </div>

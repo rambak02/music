@@ -6,7 +6,6 @@ import {
   removeLikeInTrack,
 } from "@/store/features/playlistSlice";
 import { TrackType } from "@/types/type";
-import { useState } from "react";
 
 type Props = {
   track: TrackType;
@@ -16,28 +15,24 @@ export const useLikeTrack = ({ track }: Props) => {
   const dispatch = useAppDispatch();
   const tokens = useAppSelector((state) => state.auth.tokens);
   const likedTracks = useAppSelector((state) => state.playlist.likedTracks);
-  const [isLiked, setIsLiked] = useState(likedTracks.some((el) => el.id === track.id))
- 
+  const isLiked = likedTracks.includes(track.id);
 
   const handleLike = async (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
-    e.stopPropagation()
-    if (tokens.access && likedTracks) {
-      if (isLiked) {
-        await dispatch(
-          removeLikeInTrack({ access: tokens.access, id: track.id })
-        );
-        dispatch(dislike(track));
-        setIsLiked(false)
-      } else {
-        await dispatch(addLikeInTrack({ access: tokens.access, id: track.id }));
-        dispatch(likeTrack(track));
-        setIsLiked(true)
-      }
-    } else {
-      alert("вы незарегистрированы")
+    e.stopPropagation();
+    if (!tokens.access) {
+      return alert("вы незарегистрированы");
+    }
+    const likedAction = isLiked ? removeLikeInTrack : addLikeInTrack;
+    try {
+      await dispatch(likedAction({ access: tokens.access, id: track.id }));
+      isLiked
+        ? dispatch(dislike({ id: track.id }))
+        : dispatch(likeTrack({ id: track.id }));
+    } catch (error) {
+      console.error(error);
     }
   };
-  return { isLiked, handleLike, setIsLiked };
+  return { isLiked, handleLike };
 };

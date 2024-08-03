@@ -15,10 +15,9 @@ import {
   toggleShuffleTrack,
 } from "@/store/features/playlistSlice";
 import { useLikeTrack } from "@/hooks/likes";
+import { TrackType } from "@/types/type";
 
-export const Bar = () => {
-  const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
-  const track = currentTrack;
+export const Bar = ({ track }: { track: TrackType }) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const shuffleTrack = useAppSelector((state) => state.playlist.isShuffled);
   //состояние для зацикливания трека
@@ -29,7 +28,7 @@ export const Bar = () => {
   const [volume, setVolume] = useState<number>(0.5);
   const dispatch = useAppDispatch();
   const duration = audioRef.current?.duration || 0;
-  // const {handleLike } = useLikeTrack(track)
+    const { handleLike, isLiked } = useLikeTrack({ track });
 
   const handleNext = () => {
     dispatch(nextTrack());
@@ -47,7 +46,7 @@ export const Bar = () => {
     return () => {
       audioRef.current?.removeEventListener("ended", handleNext);
     };
-  }, [currentTrack]);
+  }, [track]);
 
   const tooglePlay = () => {
     if (isPlaying) {
@@ -93,10 +92,6 @@ export const Bar = () => {
 
   const formattedCurrentTime = formatSecond(Number(currentTime.toFixed(0)));
   const formattedDuration = formatSecond(Number(duration.toFixed(0)));
-
-  if (!currentTrack) {
-    return null;
-  }
 
   return (
     <div className={styles.bar}>
