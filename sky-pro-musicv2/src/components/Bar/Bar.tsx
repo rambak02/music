@@ -14,6 +14,7 @@ import {
   togglePlayingTrack,
   toggleShuffleTrack,
 } from "@/store/features/playlistSlice";
+import { useLikeTrack } from "@/hooks/likes";
 
 export const Bar = () => {
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
@@ -28,6 +29,7 @@ export const Bar = () => {
   const [volume, setVolume] = useState<number>(0.5);
   const dispatch = useAppDispatch();
   const duration = audioRef.current?.duration || 0;
+  // const {handleLike } = useLikeTrack(track)
 
   const handleNext = () => {
     dispatch(nextTrack());
@@ -89,22 +91,9 @@ export const Bar = () => {
     }
   };
 
-  const handleLikeTrack = () => {
-    if (currentTrack) {
-      dispatch(likeTrack(currentTrack))
-    }
-    
-  }
-  const handleDislikeTrack = () => {
-    if (currentTrack) {
-      dispatch(dislike(currentTrack))
-    }
-    
-  }
-
   const formattedCurrentTime = formatSecond(Number(currentTime.toFixed(0)));
   const formattedDuration = formatSecond(Number(duration.toFixed(0)));
-  
+
   if (!currentTrack) {
     return null;
   }
@@ -203,14 +192,18 @@ export const Bar = () => {
                 </div>
               </div>
 
-              <div className={styles.trackPlay__likeDis} >
-                <div className={clsx(styles.trackPlay__like, styles._btnIcon)} onClick={handleLikeTrack}>
+              <div className={styles.trackPlay__likeDis}>
+                <div
+                  className={clsx(styles.trackPlay__like, styles._btnIcon)}
+                  onClick={handleLike}
+                >
                   <svg className={styles.trackPlay__likeSvg}>
                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                   </svg>
                 </div>
                 <div
-                  className={clsx(styles.trackPlay__dislike, styles._btnIcon)} onClick={handleDislikeTrack}
+                  onClick={handleLike}
+                  className={clsx(styles.trackPlay__dislike, styles._btnIcon)}
                 >
                   <svg className={styles.trackPlay__dislikeSvg}>
                     <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Track.module.css";
 import { TracksType, TrackType } from "@/types/type";
 import { formatSecond } from "./helpers/helpers";
@@ -9,6 +9,8 @@ import clsx from "clsx";
 import Image from "next/image";
 import spriteImg from "../../../public/img/icon/note.svg";
 import likeImg from "../../../public/img/icon/like.svg";
+import dislikeImg from "../../../public/img/icon/dislike.svg";
+import { useLikeTrack } from "@/hooks/likes";
 
 type Props = {
   track: TrackType;
@@ -21,6 +23,11 @@ export const Track = ({ track, tracks }: Props) => {
   const isCurrentTrack = currentTrack?.id === track.id;
   const isPlayingTrack = useAppSelector((state) => state.playlist.isPlaying);
   const formattedTime = formatSecond(track.duration_in_seconds);
+  const { handleLike, isLiked } = useLikeTrack({ track });
+  useEffect (()=> {
+     
+  })
+  console.log(isLiked)
   return (
     <div
       onClick={() => dispatch(setCurrentTrack({ currentTrack: track, tracks }))}
@@ -62,12 +69,12 @@ export const Track = ({ track, tracks }: Props) => {
             {track.album}
           </a>
         </div>
-        <>
-          <svg className={styles.trackTimeSvg}>
-            <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-          </svg>
-          <span className={styles.trackTimeText}>{formattedTime}</span>
-        </>
+          {isLiked ? (
+            <Image src={dislikeImg} width={14} height={12} alt="dislike" onClick={(e) =>  handleLike(e)}/>
+          ) : (
+            <Image src={likeImg} width={14} height={12} alt="activelike" onClick={(e) => handleLike(e)}/>
+          )}
+        <span className={styles.trackTimeText}>{formattedTime}</span>
       </div>
     </div>
   );

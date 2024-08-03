@@ -2,14 +2,14 @@
 import { useAppDispatch, useAppSelector } from "@/hooks/store";
 import styles from "./Personal.module.css";
 import { logout } from "@/store/features/authSlice";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"
 export const Personal = () => {
   const dispatch = useAppDispatch();
-  const navigate = useRouter()
+  const navigate = useRouter(); 
   const  user  = useAppSelector((state) => state.auth.user)
-  const handleLogoutUser = () => {
-    dispatch(logout())
-    navigate("signin")
+  const handleLogoutUser =async () => {
+    await dispatch(logout())
+    navigate.push("signin");
    }
   return (
     <div className={styles.sidebarPersonal}>

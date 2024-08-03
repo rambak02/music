@@ -1,4 +1,4 @@
-const baseUrl = "https://webdev-music-003b5b991590.herokuapp.com/user";
+const baseUrl = "https://webdev-music-003b5b991590.herokuapp.com";
 type AuthUserType = {
   email: string;
   password: string;
@@ -13,7 +13,7 @@ type LikesType = {
   id: number;
 };
 export async function authUser({ email, password, username }: AuthUserType) {
-  const response = await fetch(baseUrl + "/signup/", {
+  const response = await fetch(baseUrl + "/user/signup/", {
     method: "POST",
     body: JSON.stringify({
       email,
@@ -31,7 +31,7 @@ export async function authUser({ email, password, username }: AuthUserType) {
   return response.json();
 }
 export async function loginUser({ email, password }: LoginUserType) {
-  const response = await fetch(baseUrl + "/login/", {
+  const response = await fetch(baseUrl + "/user/login/", {
     method: "POST",
     body: JSON.stringify({
       email,
@@ -49,7 +49,7 @@ export async function loginUser({ email, password }: LoginUserType) {
 }
 
 export async function fetchToken({ email, password }: LoginUserType) {
-  const response = await fetch(baseUrl + "/token/", {
+  const response = await fetch(baseUrl + "/user/token/", {
     method: "POST",
     body: JSON.stringify({
       email,
@@ -67,8 +67,8 @@ export async function fetchToken({ email, password }: LoginUserType) {
 }
 
 export async function fetchFavoriteTracks(access: string) {
-  const response = await fetch(
-    "https://skypro-music-api.skyeng.tech/catalog/track/favorite/all/",
+  const response = await fetch(baseUrl +
+    "/catalog/track/favorite/all/",
     {
       headers: {
         Authorization: `Bearer ${access}`,
@@ -83,8 +83,8 @@ export async function fetchFavoriteTracks(access: string) {
 }
 
 export async function addLike({ access, id }: LikesType) {
-  const response = await fetch(
-    `https://skypro-music-api.skyeng.tech/catalog/track/${id}/favorite/`,
+  const response = await fetch(baseUrl +
+    `/catalog/track/${id}/favorite/`,
     {
       headers: {
         Authorization: `Bearer ${access}`,
@@ -103,8 +103,8 @@ export async function addLike({ access, id }: LikesType) {
 }
 
 export async function removeLike({ access, id }: LikesType) {
-  const response = await fetch(
-    `https://skypro-music-api.skyeng.tech/catalog/track/${id}/favorite/`,
+  const response = await fetch(baseUrl +
+    `/catalog/track/${id}/favorite/`,
     {
       headers: {
         Authorization: `Bearer ${access}`,
