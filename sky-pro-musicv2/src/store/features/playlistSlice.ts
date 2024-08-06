@@ -47,7 +47,7 @@ type PlaylistStateType = {
 };
 type LikesType = {
   access: string;
-  id: string;
+  id: number;
 };
 const initialState: PlaylistStateType = {
   isPlaying: false,

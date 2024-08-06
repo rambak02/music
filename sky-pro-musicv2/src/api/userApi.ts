@@ -10,7 +10,7 @@ type LoginUserType = {
 };
 type LikesType = {
   access: string;
-  id: string;
+  id: number;
 };
 export async function authUser({ email, password, username }: AuthUserType) {
   const response = await fetch(baseUrl + "/user/signup/", {
@@ -79,7 +79,8 @@ export async function fetchFavoriteTracks(access: string) {
   if (!response.ok) {
     throw new Error("Ошибка при получении данных");
   }
-  return response.json();
+  const data = await response.json();
+  return data.data;
 }
 
 export async function addLike({ access, id }: LikesType) {

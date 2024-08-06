@@ -15,7 +15,6 @@ type MainProps = {
 };
 
 export const Main = ({ tracks }: MainProps) => {
-
   return (
     <>
       <h2 className={styles.centerblock__h2}>Треки</h2>
