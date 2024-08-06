@@ -43,11 +43,11 @@ type PlaylistStateType = {
   tracks: TrackType[];
   isShuffled: boolean;
   shuffledPlaylist: TrackType[];
-  likedTracks: number[];
+  likedTracks: TrackType[];
 };
 type LikesType = {
   access: string;
-  id: number;
+  id: string;
 };
 const initialState: PlaylistStateType = {
   isPlaying: false,
@@ -106,12 +106,12 @@ const playlistSlice = createSlice({
     setPlaylist: (state, action: PayloadAction<{ tracks: TrackType[] }>) => {
       state.tracks = action.payload.tracks;
     },
-    likeTrack: (state, action: PayloadAction<{ id: number }>) => {
-      state.likedTracks.push(action.payload.id);
+    likeTrack: (state, action: PayloadAction<TrackType>) => {
+      state.likedTracks.push(action.payload);
     },
-    dislike: (state, action: PayloadAction<{ id: number }>) => {
+    dislike: (state, action: PayloadAction<TrackType>) => {
       state.likedTracks = state.likedTracks.filter(
-        (el) => el !== action.payload.id
+        (el) => el.id !== action.payload.id
       );
     },
   },
@@ -119,15 +119,15 @@ const playlistSlice = createSlice({
     builder
       .addCase(
         getFavoriteTracks.fulfilled,
-        (state, action: PayloadAction<TrackType[] | null>) => {
+        (state, action: PayloadAction<TrackType[]>) => {
           if (action.payload) {
-            state.likedTracks = action.payload.map((el) => el.id);
+            state.likedTracks = action.payload;
           }
         }
       )
       .addCase(
         getAllTracks.fulfilled,
-        (state, action: PayloadAction<TrackType[] | null>) => {
+        (state, action: PayloadAction<TrackType[]>) => {
           if (action.payload) {
             state.tracks = action.payload;
           }

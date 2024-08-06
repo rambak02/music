@@ -39,12 +39,12 @@ export const NavBar = () => {
       >
         <ul className={styles.menuList}>
           <li className={styles.menuItem}>
-            <a href="#" className={styles.menuLink}>
+            <a href="/" className={styles.menuLink}>
               Главное
             </a>
           </li>
           <li className={styles.menuItem}>
-            <a href="#" className={styles.menuLink}>
+            <a href="/route/favoritePage" className={styles.menuLink}>
               Мой плейлист
             </a>
           </li>

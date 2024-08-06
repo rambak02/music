@@ -10,7 +10,7 @@ type LoginUserType = {
 };
 type LikesType = {
   access: string;
-  id: number;
+  id: string;
 };
 export async function authUser({ email, password, username }: AuthUserType) {
   const response = await fetch(baseUrl + "/user/signup/", {

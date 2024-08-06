@@ -14,10 +14,11 @@ import {
   togglePlayingTrack,
   toggleShuffleTrack,
 } from "@/store/features/playlistSlice";
-import { useLikeTrack } from "@/hooks/likes";
-import { TrackType } from "@/types/type";
+import { BarLike } from "./BarLike";
 
-export const Bar = ({ track }: { track: TrackType }) => {
+
+export const Bar = () => {
+  const track = useAppSelector((state) => state.playlist.currentTrack) ;
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const shuffleTrack = useAppSelector((state) => state.playlist.isShuffled);
   //состояние для зацикливания трека
@@ -28,7 +29,7 @@ export const Bar = ({ track }: { track: TrackType }) => {
   const [volume, setVolume] = useState<number>(0.5);
   const dispatch = useAppDispatch();
   const duration = audioRef.current?.duration || 0;
-    const { handleLike, isLiked } = useLikeTrack({ track });
+
 
   const handleNext = () => {
     dispatch(nextTrack());
@@ -92,6 +93,9 @@ export const Bar = ({ track }: { track: TrackType }) => {
 
   const formattedCurrentTime = formatSecond(Number(currentTime.toFixed(0)));
   const formattedDuration = formatSecond(Number(duration.toFixed(0)));
+ if (!track) {
+  return 
+ }
 
   return (
     <div className={styles.bar}>
@@ -186,25 +190,7 @@ export const Bar = ({ track }: { track: TrackType }) => {
                   </a>
                 </div>
               </div>
-
-              <div className={styles.trackPlay__likeDis}>
-                <div
-                  className={clsx(styles.trackPlay__like, styles._btnIcon)}
-                  onClick={handleLike}
-                >
-                  <svg className={styles.trackPlay__likeSvg}>
-                    <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                  </svg>
-                </div>
-                <div
-                  onClick={handleLike}
-                  className={clsx(styles.trackPlay__dislike, styles._btnIcon)}
-                >
-                  <svg className={styles.trackPlay__dislikeSvg}>
-                    <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
-                  </svg>
-                </div>
-              </div>
+              {track ?  <BarLike track={track}/> : ""}
             </div>
           </div>
           <div className={clsx(styles.bar__volumeBlock, styles.volume)}>

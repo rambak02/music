@@ -15,7 +15,7 @@ export const useLikeTrack = ({ track }: Props) => {
   const dispatch = useAppDispatch();
   const tokens = useAppSelector((state) => state.auth.tokens);
   const likedTracks = useAppSelector((state) => state.playlist.likedTracks);
-  const isLiked = likedTracks.includes(track.id);
+  const isLiked = likedTracks.includes(track);
 
   const handleLike = async (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -28,8 +28,8 @@ export const useLikeTrack = ({ track }: Props) => {
     try {
       await dispatch(likedAction({ access: tokens.access, id: track.id }));
       isLiked
-        ? dispatch(dislike({ id: track.id }))
-        : dispatch(likeTrack({ id: track.id }));
+        ? dispatch(dislike( track))
+        : dispatch(likeTrack(track ));
     } catch (error) {
       console.error(error);
     }

@@ -10,8 +10,11 @@ import { Sidebar } from "@/components/Sidebar/Sidebar";
 import { Bar } from "@/components/Bar/Bar";
 import { TrackType, TracksType } from "@/types/type";
 import { useAppSelector } from "@/hooks/store";
+type MainProps = {
+  tracks: TrackType[]
+}
 
-export const Main = ({ tracks }: TracksType) => {
+export const Main = ({ tracks }: MainProps) => {
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
   const track = currentTrack;
   return (
@@ -27,7 +30,7 @@ export const Main = ({ tracks }: TracksType) => {
           </div>
           <Sidebar />
         </div>
-        {track ? <Bar track={track} /> : ""}
+        {track ? <Bar /> : ""}
         <footer className={styles.footer}></footer>
       </div>
     </div>
