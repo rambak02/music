@@ -15,8 +15,7 @@ type MainProps = {
 };
 
 export const Main = ({ tracks }: MainProps) => {
-  const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
-  const track = currentTrack;
+
   return (
     <>
       <h2 className={styles.centerblock__h2}>Треки</h2>

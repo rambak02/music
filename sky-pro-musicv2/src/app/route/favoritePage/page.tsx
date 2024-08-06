@@ -4,14 +4,12 @@ import { TrackType } from "@/types/type";
 import { useAppDispatch, useAppSelector } from "@/hooks/store";
 import { useEffect } from "react";
 import { getFavoriteTracks, setPlaylist } from "@/store/features/playlistSlice";
-import TrackLayout from "../layout";
 import { Filter } from "@/components/Filter/Filter";
 import { Playlist } from "@/components/Playlist/Playlist";
 
 export default function MainFavPageSongs() {
   const dispatch = useAppDispatch();
-//   const token = useAppSelector((state) => state.auth.tokens?.access);
-const token = localStorage.getItem("token")
+  const token = useAppSelector((state) => state.auth.tokens?.access);
   const favTracks: TrackType[] = useAppSelector(
     (state) => state.playlist.likedTracks
   );
@@ -24,7 +22,7 @@ const token = localStorage.getItem("token")
   }, [dispatch, favTracks, token]);
 
   if (!token) {
-    return <div>Чтобы увидеть свои треки требуется авторизация</div>
+    return <div>Чтобы увидеть свои треки требуется авторизация</div>;
   }
   return (
     <>

@@ -26,7 +26,7 @@ export const useLikeTrack = ({ track }: Props) => {
     }
     const likedAction = isLiked ? removeLikeInTrack : addLikeInTrack;
     try {
-      await dispatch(likedAction({ access: tokens.access, id: track.id }));
+      await dispatch(likedAction({ access: tokens.access, id: track._id }));
       isLiked
         ? dispatch(dislike( track))
         : dispatch(likeTrack(track ));

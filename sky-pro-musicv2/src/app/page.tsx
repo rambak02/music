@@ -7,7 +7,8 @@ export default async function Home() {
   let tracks: TrackType[] = [];
   let error: string | null = null;
   try {
-    tracks = await getTracks();
+    const res = await getTracks();
+    tracks = res.data;
   } catch (err: unknown) {
     error =
       err instanceof Error
