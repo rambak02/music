@@ -1,6 +1,7 @@
 import { getTracks } from "@/api/api";
 import { Main } from "@/components/Main/Main";
 import { TrackType } from "@/types/type";
+import TrackLayout from "./route/layout";
 
 export default async function Home() {
   let tracks: TrackType[] = [];
@@ -13,5 +14,9 @@ export default async function Home() {
         ? "Ошибка при загрузке трека. " + err.message
         : "Неизвестная ошибка";
   }
-  return <Main tracks={tracks} />;
+  return (
+    <TrackLayout>
+      <Main tracks={tracks} />;
+    </TrackLayout>
+  );
 }
