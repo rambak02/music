@@ -21,7 +21,7 @@ export const Track = ({ track, tracks }: Props) => {
   const { isLiked, handleLike } = useLikeTrack({ track });
   const dispatch = useAppDispatch();
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
-  const isCurrentTrack = currentTrack?.id === track.id;
+  const isCurrentTrack = currentTrack?._id === track._id;
   const isPlayingTrack = useAppSelector((state) => state.playlist.isPlaying);
   const formattedTime = formatSecond(track.duration_in_seconds);
  
