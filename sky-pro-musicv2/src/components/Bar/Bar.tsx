@@ -1,7 +1,7 @@
 "use client";
 import clsx from "clsx";
 import styles from "./Bar.module.css";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { formatSecond } from "./helper/helper";
@@ -45,9 +45,9 @@ export const Bar = () => {
     return () => {
       audioRef.current?.removeEventListener("ended", handleNext);
     };
-  }, [track]);
+  }, [handleNext, track]);
 
-  const tooglePlay = () => {
+  const tooglePlay = useCallback(() => {
     if (isPlaying) {
       audioRef.current?.pause();
     } else {
@@ -55,7 +55,7 @@ export const Bar = () => {
     }
     setIsPlaying((prev) => !prev);
     dispatch(togglePlayingTrack());
-  };
+  }, [dispatch, isPlaying]);
 
   const toogleLoop = () => {
     const audio = audioRef.current;
@@ -118,7 +118,7 @@ export const Bar = () => {
             <div className={styles.playerControls}>
               <div className={styles.player__btnPrev} onClick={handlePrev}>
                 <svg className={styles.player__btnPrevSvg}>
-                  <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
+                  <use xlinkHref="/img/icon/sprite.svg#icon-prev"></use>
                 </svg>
               </div>
               <div
@@ -127,20 +127,20 @@ export const Bar = () => {
               >
                 {isPlaying ? (
                   <Image
-                    src="img/icon/pause.svg"
+                    src="/img/icon/pause.svg"
                     height={20}
                     width={22}
                     alt="pause"
                   />
                 ) : (
                   <svg className={styles.player__btnPlaySvg}>
-                    <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
+                    <use xlinkHref="/img/icon/sprite.svg#icon-play"></use>
                   </svg>
                 )}
               </div>
               <div className={styles.player__btnNext} onClick={handleNext}>
                 <svg className={styles.player__btnNextSvg}>
-                  <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
+                  <use xlinkHref="/img/icon/sprite.svg#icon-next"></use>
                 </svg>
               </div>
 
@@ -153,7 +153,7 @@ export const Bar = () => {
                     [styles.active]: isLoop,
                   })}
                 >
-                  <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
+                  <use xlinkHref="/img/icon/sprite.svg#icon-repeat"></use>
                 </svg>
               </div>
               <div
@@ -165,7 +165,7 @@ export const Bar = () => {
                     [styles.active]: shuffleTrack,
                   })}
                 >
-                  <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
+                  <use xlinkHref="/img/icon/sprite.svg#icon-shuffle"></use>
                 </svg>
               </div>
             </div>
@@ -195,7 +195,7 @@ export const Bar = () => {
             <div className={styles.volume__content}>
               <div className={styles.volume__image}>
                 <svg className={styles.volume__svg}>
-                  <use xlinkHref="img/icon/sprite.svg#icon-volume"></use>
+                  <use xlinkHref="/img/icon/sprite.svg#icon-volume"></use>
                 </svg>
               </div>
               <div className={clsx(styles.volume__progress, styles._btn)}>

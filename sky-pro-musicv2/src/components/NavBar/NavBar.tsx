@@ -20,14 +20,6 @@ export const NavBar = () => {
   const toggleMenu = () => {
     setIsOpen((prev) => !prev);
   };
-  const handleNavigate = () => {
-   
-    if (user) {
-      router.push("/route/favoritePage");
-    } else {
-      alert("вы незарегистрированы");
-    }
-  };
 
   return (
     <div className={styles.mainNav}>
@@ -53,8 +45,11 @@ export const NavBar = () => {
               Главное
             </Link>
           </li>
-          <li className={styles.menuItem} onClick={handleNavigate}>
-            Мой плейлист
+          <li className={styles.menuItem} >
+
+           <Link href="/tracks/favoritePage" className={styles.menuLink}>
+              Мой плейлист
+            </Link>
           </li>
           {user ? (
             <li className={styles.menuItem} onClick={handleLogoutUser}>

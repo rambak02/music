@@ -13,13 +13,9 @@ export const getAllTracks = createAsyncThunk("playlist/getTracks", async () => {
 });
 export const getFavoriteTracks = createAsyncThunk(
   "playlist/getFavoriteTracks",
-  async (access: string) => {
-    try {
-      const favoriteTracks = await fetchFavoriteTracks(access);
+  async ({ access }: { access: string }) => {
+      const favoriteTracks = await fetchFavoriteTracks({ access });
       return favoriteTracks;
-    } catch (error) {
-      return null;
-    }
   }
 );
 export const addLikeInTrack = createAsyncThunk(
@@ -57,7 +53,7 @@ const initialState: PlaylistStateType = {
   isShuffled: false,
   shuffledPlaylist: [],
   likedTracks: [],
-  initialPlaylist: []
+  initialPlaylist: [],
 };
 
 const playlistSlice = createSlice({
@@ -134,14 +130,6 @@ const playlistSlice = createSlice({
           }
         }
       )
-      .addCase(
-        getAllTracks.fulfilled,
-        (state, action: PayloadAction<TrackType[]>) => {
-          if (action.payload) {
-            state.tracks = action.payload;
-          }
-        }
-      );
   },
 });
 

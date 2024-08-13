@@ -4,7 +4,7 @@ import styles from "../../layout.module.css";
 import { Filter } from "@/components/Filter/Filter";
 import { Playlist } from "@/components/Playlist/Playlist";
 import { useEffect, useRef } from "react";
-import { setCurrentPlaylist, setInitialPlaylist} from "@/store/features/playlistSlice";
+import { setCurrentPlaylist, setCurrentTrack, setInitialPlaylist} from "@/store/features/playlistSlice";
 import { useAppDispatch, useAppSelector } from "@/hooks/store";
 
 type CategoryProps = {
@@ -37,8 +37,7 @@ function Category({ params }: CategoryProps) {
   return (
     <>
       <h2 className={styles.centerblock__h2}>{name.current}</h2>
-      <Filter tracks={initialPlaylist}/>
-      <Playlist tracks={initialPlaylist}/>
+      <Playlist />
     </>
   );
 };

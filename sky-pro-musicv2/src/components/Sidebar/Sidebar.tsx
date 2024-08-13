@@ -13,7 +13,7 @@ export const Sidebar = () => {
       <div className={styles.sidebarBlock}>
         <div className={styles.sidebarList}>
           <div className={styles.sidebarItem}>
-            <Link className={styles.sidebarLink} href="/route/category/2">
+            <Link className={styles.sidebarLink} href="/tracks/category/2">
               <Image
                 width={250}
                 height={150}
@@ -24,7 +24,7 @@ export const Sidebar = () => {
             </Link>
           </div>
           <div className={styles.sidebarItem}>
-            <Link className={styles.sidebarLink} href="/route/category/3">
+            <Link className={styles.sidebarLink} href="/tracks/category/3">
               <Image
                 width={250}
                 height={150}
@@ -35,7 +35,7 @@ export const Sidebar = () => {
             </Link>
           </div>
           <div className={styles.sidebarItem}>
-            <Link className={styles.sidebarLink} href="/route/category/4">
+            <Link className={styles.sidebarLink} href="/tracks/category/4">
               <Image
                 width={250}
                 height={150}

@@ -6,6 +6,8 @@ export async function getTracks() {
   if (!response.ok) {
     const error = await response.json();
     throw new Error(error.error);
+    
   }
-  return response.json();
+  const res = await response.json();
+  return res.data;
 }

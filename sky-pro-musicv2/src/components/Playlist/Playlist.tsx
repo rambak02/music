@@ -4,11 +4,9 @@ import { TrackType, TracksType } from "@/types/type";
 import { Track } from "../Track/Track";
 import styles from "./Playlist.module.css";
 import clsx from "clsx";
-export const Playlist = ({
-  tracks,
-}: {
-  tracks: TrackType[];
-}) => {
+import { useAppSelector } from "@/hooks/store";
+export const Playlist = () => {
+  const tracks = useAppSelector((state)=> state.playlist.initialPlaylist)
   return (
     <div className={styles.centerblockContent}>
       <div className={styles.contentTitle}>
@@ -21,13 +19,13 @@ export const Playlist = ({
         </div>
         <div className={clsx(styles.playlistTitleCol, styles.col04)}>
           <svg className={styles.playlistTitleSvg}>
-            <use xlinkHref="img/icon/sprite.svg#icon-watch"></use>
+            <use xlinkHref="/img/icon/sprite.svg#icon-watch"></use>
           </svg>
         </div>
       </div>
       <div className={styles.contentPlaylist}>
         {tracks.map((track: TrackType) => (
-          <Track track={track} key={track._id} tracks = {tracks} />
+          <Track track={track} key={track._id} tracks={tracks} />
         ))}
       </div>
     </div>
