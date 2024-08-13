@@ -7,8 +7,6 @@ import ProgressBar from "../ProgressBar/ProgressBar";
 import { formatSecond } from "./helper/helper";
 import { useAppDispatch, useAppSelector } from "@/hooks/store";
 import {
-  dislike,
-  likeTrack,
   nextTrack,
   prevTrack,
   togglePlayingTrack,
