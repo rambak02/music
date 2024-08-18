@@ -1,9 +1,9 @@
 import Image from "next/image";
 import styles from "./Sidebar.module.css";
 import { Personal } from "../Personal/Personal";
-import playlist01Img from "../../../public/img/playlist01.png"
-import playlist02Img from "../../../public/img/playlist02.png"
-import playlist03Img from "../../../public/img/playlist03.png"
+import playlist01Img from "../../../public/img/playlist01.png";
+import playlist02Img from "../../../public/img/playlist02.png";
+import playlist03Img from "../../../public/img/playlist03.png";
 import Link from "next/link";
 
 export const Sidebar = () => {
