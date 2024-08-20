@@ -21,12 +21,5 @@ export type TrackType = {
 export type TracksType = {
   tracks: TrackType[];
 };
-export type FilterItemType = {
-  title: string;
-  list: string[];
-  value: string;
-  tracks: TrackType[];
-  isOpen: boolean;
-  onClick: (value: string) => void;
-};
+
 

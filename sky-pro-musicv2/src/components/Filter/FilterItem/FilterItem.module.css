@@ -71,3 +71,16 @@
   border-color: #ad61ff;
   color: #ad61ff;
 }
+
+.filterCount {
+  width: 30px;
+  height: 30px;
+  background-color: rgb(173, 97, 255);
+  border-radius: 50%;
+  position: absolute;
+  color: #ffffff;
+  text-align: center;
+  right: -10px;
+  bottom: 20px;
+  padding-top: 1px;
+}
