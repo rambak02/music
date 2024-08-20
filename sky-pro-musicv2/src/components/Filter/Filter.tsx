@@ -4,13 +4,16 @@ import styles from "./Filter.module.css";
 import { FilterItem } from "./FilterItem/FilterItem";
 import { filters } from "./data";
 import { useState } from "react";
+import { useAppSelector } from "@/hooks/store";
 
-export const Filter = ({ tracks }: TracksType) => {
+export const Filter = () => {
+  const tracks = useAppSelector((state) => state.playlist.tracks)
+  console.log(tracks)
   const [filterValue, setFilterValue] = useState<string | null>(null);
   const handleFilterValue = (value: string) =>
     setFilterValue((prev) => (prev === value ? null : value));
   const uniqueAuthors = Array.from(
-    new Set(tracks.map((track) => track.author))
+    new Set(tracks?.map((track) => track.author))
   );
   const uniqueGenre = Array.from(new Set(tracks.map((track) => track.genre)));
   const uniqueReleaseDate = Array.from(
@@ -23,7 +26,7 @@ export const Filter = ({ tracks }: TracksType) => {
   return (
     <div className={styles.centerblock__filter}>
       <div className={styles.filter__title}>Искать по:</div>
-      {/* {filters.map((filter) => (
+      {filters.map((filter) => (
         <FilterItem
           value={filter.value}
           tracks={tracks}
@@ -33,7 +36,7 @@ export const Filter = ({ tracks }: TracksType) => {
           onClick={handleFilterValue}
           isOpen={filterValue === filter.value}
         />
-      ))} */}
+      ))}
     </div>
   );
 };

@@ -9,9 +9,9 @@ export const Personal = () => {
   const dispatch = useAppDispatch();
   const navigate = useRouter();
   const user = useAppSelector((state) => state.auth.user);
-  const handleLogoutUser = async () => {
-    await dispatch(logout());
-    navigate.push("signin");
+  const handleLogoutUser = () => {
+    dispatch(logout());
+    navigate.push("/signin");
   };
   return (
     <div className={styles.sidebarPersonal}>

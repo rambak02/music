@@ -66,7 +66,7 @@ export async function fetchToken({ email, password }: LoginUserType) {
   return response.json();
 }
 
-export async function fetchFavoriteTracks(access: string) {
+export async function fetchFavoriteTracks({access}:{access: string} ) {
   const response = await fetch(baseUrl +
     "/catalog/track/favorite/all/",
     {
