@@ -6,7 +6,7 @@ import styles from "./Playlist.module.css";
 import clsx from "clsx";
 import { useAppSelector } from "@/hooks/store";
 export const Playlist = () => {
-  const tracks = useAppSelector((state)=> state.playlist.initialPlaylist)
+  const tracks = useAppSelector((state) => state.playlist.filteredPlaylist);
   return (
     <div className={styles.centerblockContent}>
       <div className={styles.contentTitle}>

@@ -7,6 +7,7 @@
   border-radius: 60px;
   padding: 6px 20px;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .filter__button:not(:last-child) {
@@ -83,4 +84,18 @@
   right: -10px;
   bottom: 20px;
   padding-top: 1px;
+}
+
+.listItem {
+  cursor: pointer;
+  }
+
+.listItem:hover {
+color: rgb(173, 97, 255);
+text-decoration:underline;
+}
+
+.listItemActive {
+  color: #ad61ff;
+  text-decoration: underline;
 }

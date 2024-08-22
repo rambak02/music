@@ -47,7 +47,7 @@ type PlaylistStateType = {
     orderSorting: string;
     searchString: string;
   };
-  filtredPlaylist: TrackType[];
+  filteredPlaylist: TrackType[];
 };
 type LikesType = {
   access: string;
@@ -67,7 +67,7 @@ const initialState: PlaylistStateType = {
     orderSorting: "По умолчанию",
     searchString: "",
   },
-  filtredPlaylist: [],
+  filteredPlaylist: [],
 };
 
 const playlistSlice = createSlice({
@@ -76,6 +76,7 @@ const playlistSlice = createSlice({
   reducers: {
     setCurrentPlaylist: (state, action: PayloadAction<TrackType[]>) => {
       state.tracks = action.payload;
+      state.filteredPlaylist = action.payload;
       state.initialPlaylist = action.payload;
     },
     setCurrentTrack: (
@@ -110,10 +111,9 @@ const playlistSlice = createSlice({
           action.payload.searchString || state.searchFilter.searchString,
       };
       const filterTracks = [...state.tracks].filter((track) => {
-        const searchString =
-          track.name
-            .toLocaleLowerCase()
-            .includes(state.searchFilter.searchString.toLocaleLowerCase());
+        const searchString = track.name
+          .toLocaleLowerCase()
+          .includes(state.searchFilter.searchString.toLocaleLowerCase());
         const hasAuthorFilter =
           state.searchFilter.author.length > 0
             ? state.searchFilter.author.includes(track.author)
@@ -142,7 +142,16 @@ const playlistSlice = createSlice({
         default:
           break;
       }
-      state.filtredPlaylist = filterTracks;
+      state.filteredPlaylist = filterTracks;
+    },
+    resetFilters: (state) => {
+      state.searchFilter = {
+        author: [],
+        genre: [],
+        orderSorting: "По умолчанию",
+        searchString: "",
+      };
+      state.filteredPlaylist = state.tracks;
     },
     nextTrack: (state) => {
       const playlist = state.isShuffled ? state.shuffledPlaylist : state.tracks;
@@ -176,6 +185,7 @@ const playlistSlice = createSlice({
     },
     setPlaylist: (state, action: PayloadAction<{ tracks: TrackType[] }>) => {
       state.tracks = action.payload.tracks;
+      state.filteredPlaylist = action.payload.tracks;
     },
     likeTrack: (state, action: PayloadAction<TrackType>) => {
       state.likedTracks.push(action.payload);
@@ -209,6 +219,7 @@ export const {
   setPlaylist,
   likeTrack,
   dislike,
-  setFilter
+  setFilter,
+  resetFilters
 } = playlistSlice.actions;
 export const playlistReducer = playlistSlice.reducer;

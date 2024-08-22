@@ -20,11 +20,12 @@ export const FilterItem = ({
   value,
   onClick,
   isOpen,
-  selected
+  selected,
 }: FilterItemType) => {
   const dispatch = useAppDispatch();
-  const toggleFiler = (item: string) => {
-    if (value === "release") {
+
+  const handleFilter = (item: string) => {
+    if (value === "sort") {
       dispatch(setFilter({ orderSorting: item }));
       return;
     }
@@ -38,6 +39,7 @@ export const FilterItem = ({
       );
     }
   };
+  
   return (
     <div>
       <div
@@ -46,7 +48,7 @@ export const FilterItem = ({
         })}
         onClick={() => onClick(value)}
       >
-        {selected.length > 0 && value !== "release" ? (
+        {selected.length > 0 && value !== "sort" ? (
           <div className={styles.filterCount}>{selected.length}</div>
         ) : null}
         {title}
@@ -55,16 +57,16 @@ export const FilterItem = ({
         <div className={styles.filterContainer}>
           <ul className={styles.filterList}>
             {list.map((item, index) => (
-               <li
-               key={index}
-               onClick={() => toggleFiler(item)}
-               className={clsx(styles.listItem, {
-                 [styles.listItemActive]:
-                   value === "release"
-                     ? selected === item
-                     : selected.includes(item),
-               })}
-             >
+              <li
+                key={index}
+                onClick={() => handleFilter(item)}
+                className={clsx(styles.listItem, {
+                  [styles.listItemActive]:
+                    value === "sort"
+                      ? selected === item
+                      : selected.includes(item),
+                })}
+              >
                 {item}
               </li>
             ))}

@@ -2,7 +2,6 @@
 
 import styles from "./Filter.module.css";
 import { FilterItem } from "./FilterItem/FilterItem";
-import { filters } from "./data";
 import { useState } from "react";
 import { useAppSelector } from "@/hooks/store";
 import { getUniqueValues } from "@/utils/getUniqueValues";
@@ -11,9 +10,11 @@ const SORT_OPTIONS = ["По умолчанию", "Сначала новые", "�
 
 export const Filter = () => {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
+
   const tracks = useAppSelector((state) => state.playlist.initialPlaylist);
   const handleFilterOpen = (filterName: string) => {
     setActiveFilter((prev) => (prev === filterName ? null : filterName));
+    console.log(activeFilter)
   };
 
   const getUniqueAuthors = getUniqueValues(tracks, "author");
@@ -46,7 +47,7 @@ export const Filter = () => {
         <FilterItem
           key={filter.title}
           title={filter.title}
-          isOpen={activeFilter === filter.title}
+          isOpen={activeFilter === filter.value}
           onClick={handleFilterOpen}
           list={filter.list}
           tracks={tracks}
