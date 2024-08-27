@@ -64,5 +64,17 @@
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  overflow-y: auto;
+  overflow-y: scroll;
+  height: 520px;
+  padding-right: 5px;
+}
+.contentPlaylist::-webkit-scrollbar {
+  width: 3px;               /* ширина scrollbar */
+}
+.contentPlaylist::-webkit-scrollbar-track {
+  background: rgb(92, 91, 89);        /* цвет дорожки */
+}
+.contentPlaylist::-webkit-scrollbar-thumb {
+  background-color: rgb(166, 166, 170);    /* цвет плашки */
+  border-radius: 20px;       /* закругления плашки */ 
 }
