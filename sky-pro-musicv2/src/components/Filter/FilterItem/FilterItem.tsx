@@ -10,7 +10,7 @@ export type FilterItemType = {
   value: string;
   tracks: TrackType[];
   isOpen: boolean;
-  onClick: (value: string) => void;
+  handleFilterOpen: (value: string) => void;
   selected: string[] | string;
 };
 
@@ -18,7 +18,7 @@ export const FilterItem = ({
   title,
   list,
   value,
-  onClick,
+  handleFilterOpen,
   isOpen,
   selected,
 }: FilterItemType) => {
@@ -26,31 +26,31 @@ export const FilterItem = ({
 
   const handleFilter = (item: string) => {
     if (value === "sort") {
-      dispatch(setFilter({ orderSorting: item }));
-      return;
+      dispatch(setFilter({ author: [], genre: [], orderSorting: item }));
     }
-    if (selected instanceof Array) {
-      dispatch(
-        setFilter({
-          [value]: selected.includes(item)
-            ? selected.filter((el) => el !== item)
-            : [...selected, item],
-        })
-      );
-    }
+    const newFilter =
+      selected instanceof Array
+        ? selected.includes(item)
+          ? selected.filter((el) => el !== item)
+          : [...selected, item]
+        : [item];
+    dispatch(
+      setFilter({
+        [value]: newFilter,
+        orderSorting: item,
+        ...(value === "author" ? { genre: [] } : { author: [] }),
+      })
+    );
   };
-  
+
   return (
     <div>
       <div
         className={clsx(styles.filter__button, styles._btnText, {
           [styles.openFilter]: isOpen,
         })}
-        onClick={() => onClick(value)}
+        onClick={() => handleFilterOpen(title)}
       >
-        {selected.length > 0 && value !== "sort" ? (
-          <div className={styles.filterCount}>{selected.length}</div>
-        ) : null}
         {title}
       </div>
       {isOpen && (

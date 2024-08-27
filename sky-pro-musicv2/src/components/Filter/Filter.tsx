@@ -11,10 +11,9 @@ const SORT_OPTIONS = ["По умолчанию", "Сначала новые", "�
 export const Filter = () => {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
 
-  const tracks = useAppSelector((state) => state.playlist.initialPlaylist);
+  const tracks = useAppSelector((state) => state.playlist.tracks);
   const handleFilterOpen = (filterName: string) => {
-    setActiveFilter((prev) => (prev === filterName ? null : filterName));
-    console.log(activeFilter)
+    setActiveFilter((prev) => (prev === filterName ? null : filterName)); 
   };
 
   const getUniqueAuthors = getUniqueValues(tracks, "author");
@@ -47,8 +46,8 @@ export const Filter = () => {
         <FilterItem
           key={filter.title}
           title={filter.title}
-          isOpen={activeFilter === filter.value}
-          onClick={handleFilterOpen}
+          isOpen={activeFilter === filter.title}
+          handleFilterOpen={handleFilterOpen}
           list={filter.list}
           tracks={tracks}
           value={filter.value}
