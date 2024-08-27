@@ -25,9 +25,8 @@
 }
 .filterList {
   min-width: 195px;
-  max-height: 280px;
+  max-height: 90px;
   overflow-y: scroll;
-  padding: 34px 0px 0px 0px;
   border-radius: 12px;
   background: #313131;
   color: white;
@@ -55,8 +54,8 @@
 }
 
 .filterContainer {
-  min-width: 248px;
-  height: 305px;
+  min-width: 235px;
+  height: 120px;
   padding: 34px 0px 0px 0px;
   border-radius: 12px;
   background: #313131;
