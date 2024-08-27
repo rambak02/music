@@ -15,8 +15,7 @@ type CategoryProps = {
 
 function Category({ params }: CategoryProps) {
   const dispatch = useAppDispatch();
-  const initialPlaylist = useAppSelector((state) => state.playlist.initialPlaylist);
-  const allTracks = useAppSelector((state) => state.playlist.tracks)
+  const allTracks = useAppSelector((state) => state.playlist.initialPlaylist)
   const name = useRef();
 
   useEffect(() => {
@@ -25,13 +24,12 @@ function Category({ params }: CategoryProps) {
         name.current = res.name;
         const items = res.items;
         const tracks = items.map((item: number) => allTracks.filter((track) => track._id === item)).flat();
-        console.log(tracks)
-        dispatch(setInitialPlaylist(tracks));
+        dispatch(setCurrentPlaylist(tracks));
       })
     } catch (error) {
 
     }
-  }, [dispatch, params.id, name]);
+  }, [dispatch, params.id, name, allTracks]);
 
 
   return (

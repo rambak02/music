@@ -77,7 +77,6 @@ const playlistSlice = createSlice({
     setCurrentPlaylist: (state, action: PayloadAction<TrackType[]>) => {
       state.tracks = action.payload;
       state.filteredPlaylist = action.payload;
-      state.initialPlaylist = action.payload;
     },
     setCurrentTrack: (
       state,
@@ -110,7 +109,7 @@ const playlistSlice = createSlice({
         searchString:
           action.payload.searchString || state.searchFilter.searchString,
       };
-      const filterTracks = [...state.initialPlaylist].filter((track) => {
+      const filterTracks = [...state.tracks].filter((track) => {
         const searchString = track.name
           .toLocaleLowerCase()
           .includes(state.searchFilter.searchString.toLocaleLowerCase());
