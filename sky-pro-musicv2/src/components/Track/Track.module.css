@@ -126,6 +126,7 @@
 }
 
 .trackTimeText {
+  width: 45px;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
