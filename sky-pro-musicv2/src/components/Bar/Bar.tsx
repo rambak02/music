@@ -19,9 +19,7 @@ export const Bar = () => {
   const track = useAppSelector((state) => state.playlist.currentTrack);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const shuffleTrack = useAppSelector((state) => state.playlist.isShuffled);
-  //состояние для зацикливания трека
   const [isLoop, setIsLoop] = useState(false);
-  //Состояние для управления воспроизведением
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [volume, setVolume] = useState<number>(0.5);
