@@ -16,7 +16,6 @@ export default function MainFavPageSongs() {
   useEffect(() => {
     if (token) {
         dispatch(setCurrentPlaylist(favTracks));
-        console.log(favTracks)
     }
   }, [dispatch, favTracks, token]);
 
