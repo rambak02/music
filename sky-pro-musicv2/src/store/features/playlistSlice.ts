@@ -15,6 +15,7 @@ export const getFavoriteTracks = createAsyncThunk(
   "playlist/getFavoriteTracks",
   async ({ access }: { access: string }) => {
     const favoriteTracks = await fetchFavoriteTracks({ access });
+    console.log(favoriteTracks)
     return favoriteTracks;
   }
 );
