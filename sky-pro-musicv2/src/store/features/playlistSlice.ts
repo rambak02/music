@@ -119,8 +119,9 @@ const playlistSlice = createSlice({
             : true;
         const hasGenreFilter =
           state.searchFilter.genre.length > 0
-            ? state.searchFilter.genre.includes(track.genre)
+            ? state.searchFilter.genre.includes(track.genre[0])
             : true;
+            
         return searchString && hasAuthorFilter && hasGenreFilter;
       });
       switch (state.searchFilter.orderSorting) {

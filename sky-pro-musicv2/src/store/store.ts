@@ -1,4 +1,3 @@
-// src/store/store.ts
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { playlistReducer } from "./features/playlistSlice";
 import { authReducer } from "./features/authSlice";

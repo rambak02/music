@@ -1,7 +1,6 @@
 'use client'
 import { getCategory } from "@/api/categoryApi";
 import styles from "../../layout.module.css";
-import { Filter } from "@/components/Filter/Filter";
 import { Playlist } from "@/components/Playlist/Playlist";
 import { useEffect, useRef } from "react";
 import { setCurrentPlaylist, setCurrentTrack, setInitialPlaylist} from "@/store/features/playlistSlice";
@@ -21,6 +20,7 @@ function Category({ params }: CategoryProps) {
   useEffect(() => {
     try {
       getCategory(params.id).then((res) => {
+        console.log(res)
         name.current = res.name;
         const items = res.items;
         const tracks = items.map((item: number) => allTracks.filter((track) => track._id === item)).flat();
@@ -29,7 +29,7 @@ function Category({ params }: CategoryProps) {
     } catch (error) {
 
     }
-  }, [dispatch, params.id, name, allTracks]);
+  }, [dispatch, allTracks, params.id]);
 
 
   return (
