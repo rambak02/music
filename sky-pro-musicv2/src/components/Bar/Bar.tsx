@@ -19,9 +19,7 @@ export const Bar = () => {
   const track = useAppSelector((state) => state.playlist.currentTrack);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const shuffleTrack = useAppSelector((state) => state.playlist.isShuffled);
-  //состояние для зацикливания трека
   const [isLoop, setIsLoop] = useState(false);
-  //Состояние для управления воспроизведением
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [volume, setVolume] = useState<number>(0.5);
@@ -46,7 +44,7 @@ export const Bar = () => {
     };
   }, [handleNext, track]);
 
-  const tooglePlay = useCallback(() => {
+  const tooglePlay = () => {
     if (isPlaying) {
       audioRef.current?.pause();
     } else {
@@ -54,7 +52,7 @@ export const Bar = () => {
     }
     setIsPlaying((prev) => !prev);
     dispatch(togglePlayingTrack());
-  }, [dispatch, isPlaying]);
+  };
 
   const toogleLoop = () => {
     const audio = audioRef.current;
@@ -67,6 +65,13 @@ export const Bar = () => {
       setIsLoop((prev) => !prev);
     }
   };
+
+  const onChangeVolume = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+     setVolume(Number(e.target.value));
+    }
+  }, []);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -100,7 +105,7 @@ export const Bar = () => {
         ref={audioRef}
         onTimeUpdate={(e) => setCurrentTime(e.currentTarget.currentTime)}
       ></audio>
-      <CurrentTimeBlock currentTime={currentTime} duration={duration}/>
+      <CurrentTimeBlock currentTime={currentTime} duration={duration} />
       <div className={styles.bar__content}>
         <ProgressBar
           max={duration}
@@ -202,7 +207,7 @@ export const Bar = () => {
                   max="1"
                   step="0.01"
                   value={volume}
-                  onChange={(e) => setVolume(Number(e.target.value))}
+                  onChange={onChangeVolume}
                 />
               </div>
             </div>

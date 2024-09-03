@@ -47,6 +47,7 @@
 }
 
 .trackTitleImage {
+  position: relative;
   width: 51px;
   height: 51px;
   padding: 16px;
@@ -126,6 +127,7 @@
 }
 
 .trackTimeText {
+  width: 45px;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;

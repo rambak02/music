@@ -1,40 +1,57 @@
 "use client";
-import { TracksType } from "@/types/type";
+
 import styles from "./Filter.module.css";
 import { FilterItem } from "./FilterItem/FilterItem";
-import { filters } from "./data";
 import { useState } from "react";
 import { useAppSelector } from "@/hooks/store";
+import { getUniqueValues } from "@/utils/getUniqueValues";
+
+const SORT_OPTIONS = ["По умолчанию", "Сначала новые", "Сначала старые"];
 
 export const Filter = () => {
-  const tracks = useAppSelector((state) => state.playlist.tracks)
-  console.log(tracks)
-  const [filterValue, setFilterValue] = useState<string | null>(null);
-  const handleFilterValue = (value: string) =>
-    setFilterValue((prev) => (prev === value ? null : value));
-  const uniqueAuthors = Array.from(
-    new Set(tracks?.map((track) => track.author))
-  );
-  const uniqueGenre = Array.from(new Set(tracks.map((track) => track.genre)));
-  const uniqueReleaseDate = Array.from(
-    new Set(tracks.map((track) => new Date(track.release_date).getFullYear()))
-  );
-  const sortedUniqueReleaseDate = uniqueReleaseDate.sort((a, b) => b - a);
-  filters[0].list = uniqueAuthors;
-  filters[2].list = uniqueGenre;
-  filters[1].list = sortedUniqueReleaseDate.map((e) => e.toString());
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+
+  const tracks = useAppSelector((state) => state.playlist.tracks);
+  const handleFilterOpen = (filterName: string) => {
+    setActiveFilter((prev) => (prev === filterName ? null : filterName)); 
+  };
+
+  const getUniqueAuthors = getUniqueValues(tracks, "author");
+  const getUniqueGenre = getUniqueValues(tracks, "genre");
+
+  const filterData = [
+    {
+      title: "исполнителю",
+      list: getUniqueAuthors,
+      value: "author",
+      selected: useAppSelector((store) => store.playlist.searchFilter.author),
+    },
+    {
+      title: "году выпуска",
+      list: SORT_OPTIONS,
+      value: "sort",
+      selected: useAppSelector((store) => store.playlist.searchFilter.orderSorting),
+    },
+    {
+      title: "жанру",
+      list: getUniqueGenre,
+      value: "genre",
+      selected: useAppSelector((store) => store.playlist.searchFilter.genre),
+    },
+  ];
   return (
     <div className={styles.centerblock__filter}>
       <div className={styles.filter__title}>Искать по:</div>
-      {filters.map((filter) => (
+      {filterData.map((filter) => (
         <FilterItem
-          value={filter.value}
-          tracks={tracks}
           key={filter.title}
           title={filter.title}
+          isOpen={activeFilter === filter.title}
+          handleFilterOpen={handleFilterOpen}
           list={filter.list}
-          onClick={handleFilterValue}
-          isOpen={filterValue === filter.value}
+          tracks={tracks}
+          value={filter.value}
+          selected={filter.selected}
         />
       ))}
     </div>

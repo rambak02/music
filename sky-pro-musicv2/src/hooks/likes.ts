@@ -15,7 +15,7 @@ export const useLikeTrack = ({ track }: Props) => {
   const dispatch = useAppDispatch();
   const tokens = useAppSelector((state) => state.auth.tokens);
   const likedTracks = useAppSelector((state) => state.playlist.likedTracks);
-  const isLiked = likedTracks.includes(track);
+  const isLiked = likedTracks.some((likeTrack) => likeTrack._id === track._id);
 
   const handleLike = async (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>

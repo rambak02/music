@@ -49,6 +49,7 @@
 .menuItem {
   padding: 5px 0;
   margin-bottom: 16px;
+  cursor: pointer;
 }
 
 .menuLink {

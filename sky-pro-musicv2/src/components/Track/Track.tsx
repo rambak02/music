@@ -24,8 +24,6 @@ export const Track = ({ track, tracks }: Props) => {
   const isCurrentTrack = currentTrack?._id === track._id;
   const isPlayingTrack = useAppSelector((state) => state.playlist.isPlaying);
   const formattedTime = formatSecond(track.duration_in_seconds);
- 
-
   return (
     <div
       onClick={() => dispatch(setCurrentTrack({ currentTrack: track, tracks }))}

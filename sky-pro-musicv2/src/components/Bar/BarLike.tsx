@@ -3,13 +3,16 @@ import styles from "./Bar.module.css";
 import { TrackType } from "@/types/type";
 import { useLikeTrack } from "@/hooks/likes";
 import { useAppSelector } from "@/hooks/store";
+import likeImg from "../../../public/img/icon/dislike.svg";
+import dislikeImg from "../../../public/img/icon/like.svg";
+import Image from "next/image";
 type BarLikeProps = {
-    track: TrackType
-}
+  track: TrackType;
+};
 
 export const BarLike = ({ track }: BarLikeProps) => {
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
-  const { handleLike } = useLikeTrack({ track });
+  const { isLiked, handleLike } = useLikeTrack({ track });
   if (!currentTrack) {
     return null;
   }
@@ -19,17 +22,7 @@ export const BarLike = ({ track }: BarLikeProps) => {
         className={clsx(styles.trackPlay__like, styles._btnIcon)}
         onClick={handleLike}
       >
-        <svg className={styles.trackPlay__likeSvg}>
-          <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-        </svg>
-      </div>
-      <div
-        onClick={handleLike}
-        className={clsx(styles.trackPlay__dislike, styles._btnIcon)}
-      >
-        <svg className={styles.trackPlay__dislikeSvg}>
-          <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
-        </svg>
+        <Image width = {14} height={12} src={isLiked ? likeImg : dislikeImg} alt="like/dislike"  />
       </div>
     </div>
   );

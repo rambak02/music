@@ -3,7 +3,7 @@ import styles from "../layout.module.css";
 import { TrackType } from "@/types/type";
 import { useAppDispatch, useAppSelector } from "@/hooks/store";
 import { useEffect } from "react";
-import { getFavoriteTracks, setInitialPlaylist, setPlaylist } from "@/store/features/playlistSlice";
+import { getFavoriteTracks, setCurrentPlaylist, setInitialPlaylist, setPlaylist } from "@/store/features/playlistSlice";
 import { Filter } from "@/components/Filter/Filter";
 import { Playlist } from "@/components/Playlist/Playlist";
 
@@ -15,9 +15,7 @@ export default function MainFavPageSongs() {
   );
   useEffect(() => {
     if (token) {
-      if (favTracks) {
-        dispatch(setInitialPlaylist(favTracks));
-      }
+        dispatch(setCurrentPlaylist(favTracks));
     }
   }, [dispatch, favTracks, token]);
 
